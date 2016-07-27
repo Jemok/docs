@@ -56,7 +56,7 @@ class UserSchoolDetailsRepository
 
         if($class == null){
 
-            $class_repository->store($request->campus,
+            $class = $class_repository->store($request->campus,
                                     $request->course,
                                     $request->year,
                                     $request->month,
