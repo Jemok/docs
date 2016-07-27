@@ -15,12 +15,12 @@ class CreateClassRepsTable extends Migration
         Schema::create('class_reps', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
+            $table->integer('group_id')->unsigned();
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users');
-            $table->integer('group_id')->unsigned();
             $table->foreign('group_id')
-                ->references('group')
+                ->references('id')
                 ->on('groups');
             $table->timestamps();
         });

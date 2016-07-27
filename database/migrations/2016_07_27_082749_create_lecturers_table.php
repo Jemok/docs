@@ -15,7 +15,7 @@ class CreateLecturersTable extends Migration
         Schema::create('lecturers', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('id_number');
-            $table->integer('staff_id');
+            $table->string('staff_id');
             $table->timestamps();
         });
     }

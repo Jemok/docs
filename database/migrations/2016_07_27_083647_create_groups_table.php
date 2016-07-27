@@ -28,7 +28,8 @@ class CreateGroupsTable extends Migration
                 ->references('id')
                 ->on('month_of_intakes');
             $table->foreign('course_id')
-                ->references('courses');
+                ->references('id')
+                ->on('courses');
             $table->timestamps();
         });
     }
