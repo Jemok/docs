@@ -24,4 +24,7 @@ Route::auth();
 
 Route::get('/home', 'HomeController@index');
 
+Route::get('/register/lecturer', ['as' => 'createLecturer', 'uses' => 'Auth\AuthController@getLecturerRegistrationForm' ]);
+Route::post('/register/lecture', ['as' => 'storeLecturer', 'user' => 'Auth\AuthController@register']);
+
 Route::post('/user/schools', ['as' => 'storeUserSchoolDetails', 'uses' => 'UserSchoolDetailsController@store']);

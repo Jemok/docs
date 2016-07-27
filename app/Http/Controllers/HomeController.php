@@ -35,7 +35,7 @@ class HomeController extends Controller
          * Check whether a user school details
          * are set.
          */
-        if(Auth::user()->hasSchoolDetails() == 0){
+        if(Auth::user()->isStudent() && Auth::user()->hasSchoolDetails() == 0){
 //            $campases = $campusRepository->index();
 //            $courses = $courseRepository->index();
 //            $years = $yearRepository->index();

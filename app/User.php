@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Auth;
 
 class User extends Authenticatable
 {
@@ -39,5 +40,32 @@ class User extends Authenticatable
     public function hasSchoolDetails(){
 
         return $this->school_details()->first()->status;
+    }
+
+
+    /**
+     * Check if auth user is a lecturer
+     * @return bool
+     */
+    public function isLecturer(){
+
+        if(!$this->isStudent()){
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Check if auth user is a student
+     * @return bool
+     */
+    public function isStudent(){
+
+        Auth::user()->account_type = 1;
+
+        if(Auth::user()->account_type == 1){
+            return true;
+        }
+        return false;
     }
 }
