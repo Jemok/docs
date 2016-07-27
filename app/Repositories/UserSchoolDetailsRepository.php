@@ -11,6 +11,7 @@ namespace app\Repositories;
 
 use App\UserSchoolDetails;
 use Illuminate\Support\Facades\Auth;
+use app\Repositories\ClassRepository;
 
 class UserSchoolDetailsRepository
 {
@@ -32,6 +33,7 @@ class UserSchoolDetailsRepository
     /**
      * Persist a user intake details in the database
      * @param $request
+     * @return bool
      */
     public function store($request){
 
@@ -42,5 +44,31 @@ class UserSchoolDetailsRepository
             'month'  => $request->month,
             'group'  => $request->group
         ]);
+
+        $class_repository = new ClassRepository();
+
+        $class = $class_repository->checkIfExists($request->campus,
+                                            $request->course,
+                                            $request->year,
+                                            $request->month,
+                                            $request->group);
+
+        if($class == null){
+
+            $class_repository->store($request->campus,
+                                    $request->course,
+                                    $request->year,
+                                    $request->month,
+                                    $request->group);
+            $class_repository->addAdmin($class);
+            $class_repository->addMember($class);
+
+        }else{
+            $class_repository->addMember($class);
+        }
+
+        return $class;
     }
+
+
 }
