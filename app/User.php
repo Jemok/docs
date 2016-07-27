@@ -13,7 +13,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'account_type'
     ];
 
     /**
@@ -67,5 +67,13 @@ class User extends Authenticatable
             return true;
         }
         return false;
+    }
+
+    /**
+     * User Campus relationship
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function campus(){
+        return $this->hasMany(Campus::class);
     }
 }
