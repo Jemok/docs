@@ -99,7 +99,7 @@
                             </div>
 
                             <div class="col-md-3 col-md-offset-4">
-                                <button class="btn btn-warning btn-block" type="submit" name="save" >Save</button>
+                                <button class="btn btn-primary btn-block" type="submit" name="save" >Save</button>
                             </div>
 
                         </form>
