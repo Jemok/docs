@@ -24,6 +24,15 @@ class HomeController extends Controller
     }
 
 
+    /**
+     * Handle which dashboard should be returned
+     * @param CampusRepository $campusRepository
+     * @param CourseRepository $courseRepository
+     * @param YearRepository $yearRepository
+     * @param MonthRepository $monthRepository
+     * @param GroupRepository $groupRepository
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index(CampusRepository $campusRepository,
                           CourseRepository $courseRepository,
                           YearRepository $yearRepository,
@@ -44,6 +53,18 @@ class HomeController extends Controller
             return view('school_details.create', compact('campases', 'courses', 'years', 'months', 'groups'));
         }
 
-        return view('home');
+        /**
+         * Return the student's dashboard
+         */
+        if(Auth::user()->isStudent() && Auth::user()->hasSchoolDetails() == 1){
+            return view('dashboards.student');
+        }
+
+        /**
+         * Return the lecturer's dashboard
+         */
+        if(Auth::user()->isLecturer()){
+            return view('dashboards.lecturer');
+        }
     }
 }

@@ -11,6 +11,9 @@
 |
 */
 
+/**
+ * Application set up routes
+ * --------------------------------------------------------------------------------------------------------------------*/
 Route::get('/', function () {
 
     if(\Auth::guest()){
@@ -20,11 +23,24 @@ Route::get('/', function () {
     return redirect('/home');
 });
 
+/**
+ * Authentication routes
+ ----------------------------------------------------------------------------------------------------------------------*/
 Route::auth();
 
+/**
+ * Dashboard routes
+ * --------------------------------------------------------------------------------------------------------------------*/
 Route::get('/home', 'HomeController@index');
+
+/**
+ * Lecturer registration routes
+ * ------------------------------------------------------------------------------------------------------------------**/
 
 Route::get('/register/lecturer', ['as' => 'createLecturer', 'uses' => 'Auth\AuthController@getLecturerRegistrationForm' ]);
 Route::post('/register/lecture', ['as' => 'storeLecturer', 'user' => 'Auth\AuthController@register']);
 
+/**
+ * User School Details routes
+ -----------------------------------------------------------------------------------------------------------------------*/
 Route::post('/user/schools', ['as' => 'storeUserSchoolDetails', 'uses' => 'UserSchoolDetailsController@store']);
