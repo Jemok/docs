@@ -16,7 +16,7 @@ class CreateSharedFilesTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')
-                ->refernces('id')
+                ->references('id')
                 ->on('users');
             $table->boolean('receiver');
             $table->timestamps();

@@ -18,6 +18,7 @@ class CreateGroupsTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->integer('month_id')->unsigned();
             $table->integer('course_id')->unsigned();
+            $table->integer('year_id')->unsigned();
             $table->foreign('campus_id')
                 ->references('id')
                 ->on('campuses');
