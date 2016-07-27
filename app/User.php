@@ -13,7 +13,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'account_type'
     ];
 
     /**
@@ -61,11 +61,52 @@ class User extends Authenticatable
      */
     public function isStudent(){
 
-        Auth::user()->account_type = 1;
-
-        if(Auth::user()->account_type == 1){
+        if(Auth::user()->account_type == 0){
             return true;
         }
         return false;
+    }
+
+    /**
+     * User Campus relationship
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function campus(){
+        return $this->hasMany(Campus::class);
+    }
+
+    /**
+     * User Course Relationship
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function course(){
+
+        return $this->hasMany(Course::class);
+    }
+
+    /**
+     * User Year_of_intake relationship
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function years(){
+        return $this->hasMany(Year_of_intake::class);
+    }
+
+    /**
+     * User Month_of_intake Relationship
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function months(){
+
+        return $this->hasMany(Month_of_intake::class);
+    }
+
+    /**
+     * User Class_divisions relationship
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function divisions(){
+
+        return $this->hasMany(Class_division::class);
     }
 }

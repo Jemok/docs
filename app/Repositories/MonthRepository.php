@@ -7,6 +7,7 @@
  */
 
 namespace App\Repositories;
+use App\Month_of_intake;
 
 
 class MonthRepository
@@ -20,9 +21,9 @@ class MonthRepository
     /**
      * MonthRepository constructor.
      */
-    public function __construct()
+    public function __construct(Month_of_intake $month_of_intake)
     {
-        $this->model = '';
+        $this->model = $month_of_intake;
     }
 
     /**

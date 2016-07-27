@@ -9,6 +9,9 @@
 namespace App\Repositories;
 
 
+use App\Group;
+use App\Class_division;
+
 class GroupRepository
 {
     /**
@@ -19,10 +22,11 @@ class GroupRepository
 
     /**
      * GroupRepository constructor.
+     * @param Class_division $class_division
      */
-    public function __construct()
+    public function __construct(Class_division $class_division)
     {
-        $this->model = '';
+        $this->model = $class_division;
     }
 
     /**
@@ -31,5 +35,24 @@ class GroupRepository
      */
     public function index(){
         return $this->model->all();
+    }
+
+    /**
+     * Get the id's of the groups that a user belongs
+     * @param $user_id
+     * @return mixed
+     */
+    public function userGroups($user_id){
+
+        return GroupMembers::where('user_id', $user_id)->get('group_id');
+    }
+
+    /**
+     * @param $lecturer_group_id
+     * @return mixed
+     */
+    public function getLecturerGroups($lecturer_group_id){
+
+        return Group::whereIn('id', $lecturer_group_id)->get();
     }
 }

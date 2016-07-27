@@ -4,10 +4,11 @@
 
         <div class="row">
 
-            <div class="col-md-5">
+            <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
+                    <div class="panel-heading"><h5><strong>Register </strong></h5></div>
                     <div class="panel-body">
-                        <h5 style="text-align: center;"><strong><u>Register as a lecturer</u></strong></h5>
+
 
                         <form class="form-horizontal" method="post" action="">
                             {{ csrf_field() }}

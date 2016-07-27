@@ -7,6 +7,7 @@
  */
 
 namespace App\Repositories;
+use App\Campus;
 
 
 class CampusRepository
@@ -20,10 +21,11 @@ class CampusRepository
 
     /**
      * CampusRepository constructor.
+     * @param Campus $campus
      */
-    public function __construct()
+    public function __construct(Campus $campus)
     {
-        $this->model = '';
+        $this->model = $campus;
     }
 
     /**

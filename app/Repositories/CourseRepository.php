@@ -7,6 +7,7 @@
  */
 
 namespace App\Repositories;
+use App\Course;
 
 
 class CourseRepository
@@ -20,9 +21,9 @@ class CourseRepository
     /**
      * CourseRepository constructor.
      */
-    public function __construct()
+    public function __construct(Course $course)
     {
-        $this->model = '';
+        $this->model = $course;
     }
 
     /**
