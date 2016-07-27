@@ -143,7 +143,7 @@ class AuthController extends Controller
             );
         }
 
-        Auth::guard($this->getGuard())->login($this->create($request->all(), $request));
+        \Auth::guard($this->getGuard())->login($this->create($request->all(), $request));
 
         return redirect($this->redirectPath());
     }
