@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -24,6 +25,15 @@ class HomeController extends Controller
      */
     public function index()
     {
+        /**
+         * Check whether a user school details
+         * are set.
+         */
+        if(Auth::user()->hasSchoolDetails() == 0){
+
+            return view('school_details.create');
+        }
+
         return view('home');
     }
 }

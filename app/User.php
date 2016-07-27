@@ -23,4 +23,21 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * User UserSchoolDetails Relationship
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function school_details(){
+        return  $this->hasOne(UserSchoolDetails::class);
+    }
+
+    /**
+     * Return the status of a students school details
+     * @return mixed
+     */
+    public function hasSchoolDetails(){
+
+        return $this->school_details()->first()->status;
+    }
 }
