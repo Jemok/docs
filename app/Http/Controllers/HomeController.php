@@ -51,12 +51,12 @@ class HomeController extends Controller
          * are set.
          */
         if(Auth::user()->isStudent() && Auth::user()->hasSchoolDetails() == 0){
-//            $campases = $campusRepository->index();
+            $campuses = $campusRepository->index();
 //            $courses = $courseRepository->index();
 //            $years = $yearRepository->index();
 //            $months = $monthRepository->index();
 //            $groups = $groupRepository->index();
-            return view('school_details.create', compact('campases', 'courses', 'years', 'months', 'groups'));
+            return view('school_details.create', compact('campuses', 'courses', 'years', 'months', 'groups'));
         }
 
         /**

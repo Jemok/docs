@@ -15,7 +15,14 @@
 
                                 <div class="col-md-9">
                                     <select class="form-control" name="campus">
-                                        <option value="#">campus name</option>
+                                        @if($campuses->count())
+                                            <option selected disabled>Select a campus</option>
+                                            @foreach($campuses as $campus)
+                                            <option value="#">{{ $campus->campus_name }}</option>
+                                            @endforeach
+                                        @else
+                                            <option class="disabled" disabled="">No campuses to display</option>
+                                        @endif
                                     </select>
 
                                     @if ($errors->has('campus'))

@@ -15,12 +15,15 @@ class UsersTableSeeder extends Seeder
     {
         $faker = Faker::create();
 
-        User::create([
+        $user = User::create([
 
             'name' => 'admin',
             'email' => 'admin@gmail.com',
             'password' => bcrypt('123456'),
             'account_type' => 0
+        ]);
+
+        $user->school_details()->create([
         ]);
     }
 }
