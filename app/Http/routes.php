@@ -19,3 +19,5 @@ Route::get('/', function () {
 Route::auth();
 
 Route::get('/home', 'HomeController@index');
+
+Route::post('/user/schools', ['as' => 'storeUserSchoolDetails', 'uses' => 'UserSchoolDetailsController@store']);
