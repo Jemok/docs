@@ -13,7 +13,11 @@
 
 Route::get('/', function () {
 
-    return view('welcome');
+    if(\Auth::guest()){
+        return view('welcome');
+    }
+
+    return redirect('/home');
 });
 
 Route::auth();
