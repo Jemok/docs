@@ -10,6 +10,7 @@ namespace App\Repositories;
 
 
 use App\Group;
+use App\Class_division;
 
 class GroupRepository
 {
@@ -21,10 +22,11 @@ class GroupRepository
 
     /**
      * GroupRepository constructor.
+     * @param Class_division $class_division
      */
-    public function __construct()
+    public function __construct(Class_division $class_division)
     {
-        $this->model = '';
+        $this->model = $class_division;
     }
 
     /**

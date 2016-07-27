@@ -15,7 +15,12 @@ class CreateClassDivisionsTable extends Migration
         Schema::create('class_divisions', function (Blueprint $table) {
             $table->increments('id');
             $table->string('division');
+            $table->integer('user_id')->index()->unsigned();
             $table->timestamps();
+
+            $table->foreign('user_id')
+                  ->references('id')
+                  ->on('users');
         });
     }
 

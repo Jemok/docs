@@ -29,4 +29,13 @@ class Campus extends Model
 
         return $this->belongsTo(User::class);
     }
+
+    /**
+     * Campus Course Relationship
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function course(){
+
+        return $this->hasMany(Course::class);
+    }
 }

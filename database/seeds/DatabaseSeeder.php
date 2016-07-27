@@ -11,7 +11,11 @@ class DatabaseSeeder extends Seeder
      */
     protected $tables = [
         'users',
-        'campuses'
+        'campuses',
+        'courses',
+        'year_of_intakes',
+        'month_of_intakes',
+        'class_divisions'
     ];
     /**
      * Run the database seeds.
@@ -24,6 +28,10 @@ class DatabaseSeeder extends Seeder
 
         $this->call(UsersTableSeeder::class);
         $this->call(CampusesTableSeeder::class);
+        $this->call(CoursesTableSeeder::class);
+        $this->call(YearsTableSeeder::class);
+        $this->call(MonthsTableSeeder::class);
+        $this->call(DivisionsTableSeeder::class);
     }
 
     /**

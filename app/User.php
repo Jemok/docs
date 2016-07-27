@@ -74,4 +74,39 @@ class User extends Authenticatable
     public function campus(){
         return $this->hasMany(Campus::class);
     }
+
+    /**
+     * User Course Relationship
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function course(){
+
+        return $this->hasMany(Course::class);
+    }
+
+    /**
+     * User Year_of_intake relationship
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function years(){
+        return $this->hasMany(Year_of_intake::class);
+    }
+
+    /**
+     * User Month_of_intake Relationship
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function months(){
+
+        return $this->hasMany(Month_of_intake::class);
+    }
+
+    /**
+     * User Class_divisions relationship
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function divisions(){
+
+        return $this->hasMany(Class_division::class);
+    }
 }
