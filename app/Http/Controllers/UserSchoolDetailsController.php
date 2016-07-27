@@ -18,7 +18,11 @@ class UserSchoolDetailsController extends Controller
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function store(CreateUserSchoolDetailsRequest $request, UserSchoolDetailsRepository $repository){
-        $repository->store($request);
+        $set_admin = $repository->store($request);
+
+        if($set_admin == null){
+            Session::flash('flash_message', 'Welcome, you were placed in your class group automatically, and you wer placed as the class representative');
+        }
 
         Session::flash('flash_message', 'Welcome, you were placed in your class group automatically');
 

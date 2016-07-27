@@ -7,6 +7,7 @@ use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
@@ -56,26 +57,95 @@ class AuthController extends Controller
     }
 
     /**
+     * Show the form for registering a lecturer
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function getLecturerRegistrationForm(){
+
+        return view('auth.register_lecturer');
+    }
+
+    /**
+     * Validate lecturer registration data
+     * @param array $data
+     * @return mixed
+     */
+    protected function validateLecturer(array  $data){
+
+        return Validator::make($data, [
+            'name' => 'required|max:255',
+            'email' => 'required|email|max:255|unique:users',
+            'password' => 'required|min:6|confirmed',
+            'staff_id' => 'required',
+            'campus'   => 'required'
+        ]);
+    }
+
+    /**
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
      * @return User
      */
-    protected function create(array $data)
+    protected function create(array $data, $request)
     {
-        $user = User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-        ]);
+        if($request->path() == '/register/lecturer'){
 
-        /**
-         * Create an instance of a user school details
-         * and initiate the status to 0
-         */
-        $user->school_details()->create([]);
+            $user = User::create([
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'password' => bcrypt($data['password']),
+            ]);
+
+            /**
+             * Create an instance of a lecturer
+             */
+            $user->lecturer()->create([
+                'staff_id' => $request->staff_id,
+                'campus_id' => $request->campus_id
+            ]);
+
+        }else{
+            $user = User::create([
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'password' => bcrypt($data['password']),
+            ]);
+
+            /**
+             * Create an instance of a user school details
+             * and initiate the status to 0
+             */
+            //$user->student()->create([]);
+            $user->school_details()->create([]);
+        }
 
         return $user;
+    }
+
+    /**
+     * Handle a registration request for the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function register(Request $request)
+    {
+        if($request->path() == '/register/lecturer'){
+            $validator = $this->validateLecturer($request->all());
+        }else{
+            $validator = $this->validator($request->all());
+        }
+
+        if ($validator->fails()) {
+            $this->throwValidationException(
+                $request, $validator
+            );
+        }
+
+        \Auth::guard($this->getGuard())->login($this->create($request->all(), $request));
+
+        return redirect($this->redirectPath());
     }
 
 }
