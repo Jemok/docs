@@ -6,7 +6,7 @@
  * Time: 12:38 PM
  */
 
-namespace app\Repositories;
+namespace App\Repositories;
 
 
 class ClassRepository
@@ -83,5 +83,11 @@ class ClassRepository
         $class->admins()->create([
            'user_id' => \Auth::user()->id
         ]);
+    }
+
+    public function getLecturerClasses($user_id){
+
+        return ClassMembers::where('member_type', 1)
+                            ->where('user_id', $user_id)->lists('group_id');
     }
 }

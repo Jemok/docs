@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use App\Repositories\CampusRepository;
+use App\Repositories\ClassRepository;
 use App\Repositories\CourseRepository;
 use App\Repositories\GroupRepository;
 use App\Repositories\MonthRepository;
+use App\Repositories\SharedFilesRepository;
 use App\Repositories\YearRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -31,13 +33,17 @@ class HomeController extends Controller
      * @param YearRepository $yearRepository
      * @param MonthRepository $monthRepository
      * @param GroupRepository $groupRepository
+     * @param SharedFilesRepository $sharedFilesRepository
+     * @param ClassRepository $classRepository
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index(CampusRepository $campusRepository,
                           CourseRepository $courseRepository,
                           YearRepository $yearRepository,
                           MonthRepository $monthRepository,
-                          GroupRepository $groupRepository
+                          GroupRepository $groupRepository,
+                          SharedFilesRepository $sharedFilesRepository,
+                          ClassRepository $classRepository
     )
     {
         /**
@@ -57,14 +63,26 @@ class HomeController extends Controller
          * Return the student's dashboard
          */
         if(Auth::user()->isStudent() && Auth::user()->hasSchoolDetails() == 1){
-            return view('dashboards.student');
+
+            //$user_groups = $groupRepository->userGroups(\Auth::user()->id);
+
+            //$group_files = $sharedFilesRepository->getForUserGroup($user_groups);
+
+            //$inbox_files = $sharedFilesRepository->getForUserInbox(Auth::user()->id);
+
+            return view('dashboards.student', compact('group_files', 'inbox_files'));
         }
 
         /**
          * Return the lecturer's dashboard
          */
         if(Auth::user()->isLecturer()){
-            return view('dashboards.lecturer');
+
+            //$lecturer_group_ids = $classRepository->getLecturerClasses(Auth::user()->id);
+
+            //$lecturer_groups = $groupRepository->getLecturerGroups($lecturer_group_ids);
+
+            return view('dashboards.lecturer', compact('lecturer_groups'));
         }
     }
 }
