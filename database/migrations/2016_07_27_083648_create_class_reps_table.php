@@ -14,8 +14,8 @@ class CreateClassRepsTable extends Migration
     {
         Schema::create('class_reps', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned();
-            $table->integer('group_id')->unsigned();
+            $table->integer('user_id')->index()->unsigned();
+            $table->integer('group_id')->index()->unsigned();
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users');

@@ -9,6 +9,8 @@
 namespace App\Repositories;
 
 
+use App\Group;
+
 class ClassRepository
 {
     /**
@@ -20,19 +22,19 @@ class ClassRepository
     /**
      * ClassRepository constructor.
      */
-    public function __construct()
+    public function __construct(Group $group)
     {
-        $this->model = '';
+        $this->model = $group;
     }
 
     public function store($campus, $course, $year, $month, $group){
 
-        return $this->model->create([
-            'campus' => $campus,
-            'course' => $course,
-            'year'   => $year,
-            'month'  => $month,
-            'group'  => $group
+        return $this->model-> create([
+            'campus_id' => $campus,
+            'course_id' => $course,
+            'year_of_intake_id'   => $year,
+            'month_of_intake_id'  => $month,
+            'class_division_id'  => $group
         ]);
     }
 
@@ -47,18 +49,18 @@ class ClassRepository
      */
     public function checkIfExists($campus, $course, $year, $month, $group){
 
-        if($this->model->where('campus', $campus)
-                       ->where('course', $course)
-                       ->where('year', $year)
-                       ->where('month', $month)
-                       ->where('group', $group)->exist()
+        if($this->model->where('campus_id', $campus)
+                       ->where('course_id', $course)
+                       ->where('year_of_intake_id', $year)
+                       ->where('month_of_intake_id', $month)
+                       ->where('class_division_id', $group)->exists()
         ){
 
-            return $this->model->where('campus', $campus)
-                ->where('course', $course)
-                ->where('year', $year)
-                ->where('month', $month)
-                ->where('group', $group)->first();
+            return $this->model->where('campus_id', $campus)
+                ->where('course_id', $course)
+                ->where('year_of_intake_id', $year)
+                ->where('month_of_intake_id', $month)
+                ->where('class_division_id', $group)->first();
         }
 
         return null;
@@ -69,9 +71,16 @@ class ClassRepository
      * @param $class
      */
     public function addMember($class){
-        $class->members()->create([
+
+        if($class->members()->create([
             'user_id' => \Auth::user()->id
-        ]);
+        ])){
+
+            return true;
+        }else{
+
+            return false;
+        }
     }
 
     /**
@@ -80,7 +89,7 @@ class ClassRepository
      */
     public function addAdmin($class){
 
-        $class->admins()->create([
+        $class->representative()->create([
            'user_id' => \Auth::user()->id
         ]);
     }

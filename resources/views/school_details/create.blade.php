@@ -7,7 +7,7 @@
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <h5 style="text-align: center;"><strong><u>Select year to join a group</u></strong></h5>
-                        <form class="form-horizontal" method="post" action="#">
+                        <form class="form-horizontal" method="post" action="{{ route('storeUserSchoolDetails') }}">
                             {{ csrf_field() }}
 
                             <div class="form-group {{ $errors->has('campus') ? ' has-error' : '' }}">
