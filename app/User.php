@@ -109,4 +109,13 @@ class User extends Authenticatable
 
         return $this->hasMany(Class_division::class);
     }
+
+    /**
+     * User UserIntake relationship
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function intake(){
+
+        return $this->hasMany(UserIntake::class);
+    }
 }

@@ -6,12 +6,13 @@
  * Time: 10:45 AM
  */
 
-namespace app\Repositories;
+namespace App\Repositories;
 
 
+use App\Group;
 use App\UserSchoolDetails;
 use Illuminate\Support\Facades\Auth;
-use app\Repositories\ClassRepository;
+use App\Repositories\ClassRepository;
 
 class UserSchoolDetailsRepository
 {
@@ -38,14 +39,14 @@ class UserSchoolDetailsRepository
     public function store($request){
 
         Auth::user()->intake()->create([
-            'campus' => $request->campus,
-            'course' => $request->course,
-            'year'   => $request->year,
-            'month'  => $request->month,
-            'group'  => $request->group
+            'campus_id' => $request->campus,
+            'course_id' => $request->course,
+            'year_of_intake_id'   => $request->year,
+            'month_of_intake_id'  => $request->month,
+            'class_division_id'  => $request->group
         ]);
 
-        $class_repository = new ClassRepository();
+        $class_repository = new ClassRepository(new Group());
 
         $class = $class_repository->checkIfExists($request->campus,
                                             $request->course,
@@ -61,10 +62,27 @@ class UserSchoolDetailsRepository
                                     $request->month,
                                     $request->group);
             $class_repository->addAdmin($class);
-            $class_repository->addMember($class);
+
+            $member_answer = $class_repository->addMember($class);
+
+            if($member_answer == true){
+
+
+                Auth::user()->school_details()->first()->update([
+                    'status' => 1
+                ]);
+            }
 
         }else{
-            $class_repository->addMember($class);
+            $member_answer = $class_repository->addMember($class);
+
+            if($member_answer == true){
+
+
+                Auth::user()->school_details()->update([
+                    'status' => 1
+                ]);
+            }
         }
 
         return $class;

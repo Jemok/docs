@@ -2,8 +2,9 @@
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Facades\DB;
 
-class CreateGroupsTable extends Migration
+class CreateUserIntakesTableMigration extends Migration
 {
     /**
      * Run the migrations.
@@ -12,7 +13,7 @@ class CreateGroupsTable extends Migration
      */
     public function up()
     {
-        Schema::create('groups', function (Blueprint $table) {
+        Schema::create('user_intakes', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('campus_id')->index()->unsigned();
             $table->integer('user_id')->index()->unsigned();
@@ -32,13 +33,18 @@ class CreateGroupsTable extends Migration
             $table->foreign('course_id')
                 ->references('id')
                 ->on('courses');
+            $table->foreign('user_id')
+                    ->references('id')
+                    ->on('users');
 
             DB::statement('SET FOREIGN_KEY_CHECKS = 0');
 
             $table->foreign('class_division_id')
                   ->references('id')
                   ->on('class_divisions');
+
             DB::statement('SET FOREIGN_KEY_CHECKS = 1');
+
 
             $table->timestamps();
         });
@@ -51,6 +57,6 @@ class CreateGroupsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('groups');
+        Schema::drop('user_intakes');
     }
 }
