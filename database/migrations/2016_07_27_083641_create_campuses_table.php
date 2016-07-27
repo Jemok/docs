@@ -15,6 +15,10 @@ class CreateCampusesTable extends Migration
         Schema::create('campuses', function (Blueprint $table) {
             $table->increments('id');
             $table->string('campus_name');
+            $table->integer('user_id')->index()->unsigned();
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users');
             $table->timestamps();
         });
     }
