@@ -44,3 +44,9 @@ Route::post('/register/lecturer', ['as' => 'storeLecturer', 'uses' => 'Auth\Auth
  * User School Details routes
  -----------------------------------------------------------------------------------------------------------------------*/
 Route::post('/user/schools', ['as' => 'storeUserSchoolDetails', 'uses' => 'UserSchoolDetailsController@store']);
+
+/**
+ * File routes
+ * ---------------------------------------------------------------------------------------------------------------------/
+ */
+Route::post('files', ['as' => 'storeFile', 'uses' => 'FilesController@store']);
