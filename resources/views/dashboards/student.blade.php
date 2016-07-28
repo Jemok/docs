@@ -8,7 +8,10 @@
                 <div class="alert alert-warning alert-dismissible" role="alert">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <strong>Warning!</strong> Better check your credentials. &nbsp;
-                    <button type="button" class="btn btn-primary" name="try_again">Try again</button>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".upload_file_to_group">
+                        Try again
+                    </button>
+
                 </div>
             </div>
         </div>
@@ -78,9 +81,11 @@
                                 <div class="tab-content tab-header">
                                     <div role="tabpanel" class="tab-pane tab-space active col-md-12" id="home">
 
+                                        @if(\Auth::user()->login()->first()->status == 0)
                                             <p class="col-md-12"><span class="glyphicon glyphicon-check" aria-hidden="true"></span>&nbsp;You have been automatically placed to a class group.</p>
                                             <p class="col-md-12"><span class="glyphicon glyphicon-check" aria-hidden="true"></span>&nbsp;Now you can share files to individual students.</p>
                                             <p class="col-md-12"><span class="glyphicon glyphicon-check" aria-hidden="true"></span>&nbsp;You can also share files to the entire group.</p>
+                                        @endif
 
                                         <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                                             <div class="panel panel-default panel-file">
@@ -101,13 +106,6 @@
                                             </div>
 
                                         </div>
-
-                                        @if(\Auth::user()->login()->first()->status == 0)
-                                        <p class="col-md-12"><span class="glyphicon glyphicon-check" aria-hidden="true"></span>&nbsp;You have been automatically placed to a class group.</p>
-                                        <p class="col-md-12"><span class="glyphicon glyphicon-check" aria-hidden="true"></span>&nbsp;Now you can share files to individual students.</p>
-                                        <p class="col-md-12"><span class="glyphicon glyphicon-check" aria-hidden="true"></span>&nbsp;You can also share files to the entire group.</p>
-                                        @endif
-
 
                                     </div>
                                     <div role="tabpanel" class="tab-pane tab-space col-md-12" id="settings">
