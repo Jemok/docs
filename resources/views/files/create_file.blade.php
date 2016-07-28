@@ -30,7 +30,7 @@
                         <label for="description" class="col-md-3 control-label">Description:</label>
 
                         <div class="col-md-8">
-                            <textarea class="form-control" rows="4" name="description"></textarea>
+                            <textarea class="form-control" rows="4" name="description">{{ old('description') }}</textarea>
 
                             @if ($errors->has('description'))
                                 <span class="help-block">
