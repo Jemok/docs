@@ -9,7 +9,7 @@
                 <h4 class="modal-title" id="gridSystemModalLabel">Modal title</h4>
             </div>
 
-                <form class="form-horizontal" method="post" action="#">
+                <form class="form-horizontal" method="post" action="{{ route('storeFile') }}">
                     {{ csrf_field() }}
 
                     <div class="form-group {{ $errors->has('title') ? ' has-error' : '' }}">
@@ -59,7 +59,7 @@
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Upload file</button>
+                        <button type="submit" class="btn btn-primary">Upload file</button>
                     </div>
 
 
