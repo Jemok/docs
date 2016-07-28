@@ -6,7 +6,7 @@
  * Time: 11:12 PM
  */
 
-namespace app\Repositories;
+namespace App\Repositories;
 use App\File;
 
 class FileRepository
@@ -28,8 +28,10 @@ class FileRepository
 
     public function store($request){
 
+        // getting all of the post data
+        //$file = $request->file('file');
 
-
+        //dd($file);
     }
 
 }

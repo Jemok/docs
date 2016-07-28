@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use app\Repositories\FileRepository;
+use App\Repositories\FileRepository;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
