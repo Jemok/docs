@@ -10,7 +10,7 @@
                     <div class="panel-body">
 
 
-                        <form class="form-horizontal" method="post" action="">
+                        <form class="form-horizontal" method="post" action="{{ route('storeLecturer') }}">
                             {{ csrf_field() }}
 
                             <div class="form-group {{ $errors->has('name') ? ' has-error' : '' }}">
@@ -88,7 +88,14 @@
 
                                 <div class="col-md-9">
                                     <select class="form-control" name="campus">
-                                        <option value="#">campus</option>
+                                        @if($campuses->count())
+                                            <option disabled selected>Select a campus</option>
+                                            @foreach($campuses as $campus)
+                                            <option value="{{ $campus->id }}">{{ $campus->campus_name }}</option>
+                                            @endforeach
+                                        @else
+                                            <option disabled selected>No campuses to display</option>
+                                        @endif
                                     </select>
 
                                     @if ($errors->has('campus'))
