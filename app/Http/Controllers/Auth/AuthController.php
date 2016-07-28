@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Repositories\CampusRepository;
 use App\User;
 use Validator;
 use App\Http\Controllers\Controller;
@@ -58,11 +59,14 @@ class AuthController extends Controller
 
     /**
      * Show the form for registering a lecturer
+     * @param CampusRepository $campusRepository
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function getLecturerRegistrationForm(){
+    public function getLecturerRegistrationForm(CampusRepository $campusRepository){
 
-        return view('auth.register_lecturer');
+        $campuses = $campusRepository->index();
+
+        return view('auth.register_lecturer', compact('campuses'));
     }
 
     /**
@@ -89,20 +93,21 @@ class AuthController extends Controller
      */
     protected function create(array $data, $request)
     {
-        if($request->path() == '/register/lecturer'){
+        if($request->path() == 'register/lecturer'){
 
             $user = User::create([
                 'name' => $data['name'],
                 'email' => $data['email'],
                 'password' => bcrypt($data['password']),
+                'account_type' => 1
             ]);
 
             /**
              * Create an instance of a lecturer
              */
             $user->lecturer()->create([
-                'staff_id' => $request->staff_id,
-                'campus_id' => $request->campus_id
+                'staff_id' => $data['staff_id'],
+                'campus_id' => $data['campus']
             ]);
 
         }else{

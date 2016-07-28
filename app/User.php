@@ -61,7 +61,7 @@ class User extends Authenticatable
      */
     public function isStudent(){
 
-        if(Auth::user()->account_type == 1){
+        if(Auth::user()->account_type == 0){
             return true;
         }
         return false;
@@ -117,5 +117,14 @@ class User extends Authenticatable
     public function intake(){
 
         return $this->hasMany(UserIntake::class);
+    }
+
+    /**
+     * User Lecturer Relationship
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function lecturer(){
+
+        return $this->hasMany(Lecturer::class);
     }
 }

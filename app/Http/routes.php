@@ -14,7 +14,7 @@
 /**
  * Application set up routes
  * --------------------------------------------------------------------------------------------------------------------*/
-Route::get('/', function () {
+Route::get('/', function() {
 
     if(\Auth::guest()){
         return view('welcome');
@@ -37,8 +37,8 @@ Route::get('/home', 'HomeController@index');
  * Lecturer registration routes
  * ------------------------------------------------------------------------------------------------------------------**/
 
-Route::get('/register/lecturer', ['as' => 'createLecturer', 'uses' => 'Auth\AuthController@getLecturerRegistrationForm' ]);
-Route::post('/register/lecture', ['as' => 'storeLecturer', 'user' => 'Auth\AuthController@register']);
+Route::get('/register/lecturer', ['as' => 'createLecturer', 'uses' => 'Auth\AuthController@getLecturerRegistrationForm']);
+Route::post('/register/lecturer', ['as' => 'storeLecturer', 'uses' => 'Auth\AuthController@register']);
 
 /**
  * User School Details routes

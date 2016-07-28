@@ -18,7 +18,7 @@ class CreateLecturersTable extends Migration
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users');
-            $table->integer('id_number');
+            $table->integer('campus_id');
             $table->string('staff_id');
             $table->timestamps();
         });
