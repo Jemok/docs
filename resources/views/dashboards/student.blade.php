@@ -4,6 +4,16 @@
     <div class="container">
 
         <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="alert alert-warning alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <strong>Warning!</strong> Better check your credentials. &nbsp;
+                    <button type="button" class="btn btn-primary" name="try_again">Try again</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
 
             {{--left panel--}}
             <div class="col-md-3">
