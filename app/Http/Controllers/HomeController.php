@@ -70,7 +70,19 @@ class HomeController extends Controller
 
             //$inbox_files = $sharedFilesRepository->getForUserInbox(Auth::user()->id);
 
-            return view('dashboards.student', compact('group_files', 'inbox_files'));
+            $user_class = Auth::user()->intake()->with('year', 'month', 'course', 'division')->first();
+
+            $class_name = $classRepository->makeName($user_class);
+
+            if(Auth::user()->login()->first()->status == 1){
+
+                $login_status = 1;
+            }else{
+                $login_status = 0;
+
+            }
+
+            return view('dashboards.student', compact('group_files', 'inbox_files', 'class_name', 'login_status'));
         }
 
         /**
@@ -82,7 +94,10 @@ class HomeController extends Controller
 
             //$lecturer_groups = $groupRepository->getLecturerGroups($lecturer_group_ids);
 
-            return view('dashboards.lecturer', compact('lecturer_groups'));
+            $class_name = '';
+
+            return view('dashboards.lecturer', compact('lecturer_groups', 'class_name'));
         }
     }
+
 }

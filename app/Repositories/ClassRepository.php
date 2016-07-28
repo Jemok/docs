@@ -99,4 +99,11 @@ class ClassRepository
         return ClassMembers::where('member_type', 1)
                             ->where('user_id', $user_id)->lists('group_id');
     }
+
+    public function makeName($user_class){
+
+        $name = $user_class->year->year.' '.$user_class->month->month.' '.$user_class->course->course_name.' '.$user_class->division->division;
+
+        return $name;
+    }
 }
