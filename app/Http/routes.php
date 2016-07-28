@@ -50,6 +50,7 @@ Route::post('/user/schools', ['as' => 'storeUserSchoolDetails', 'uses' => 'UserS
  * ---------------------------------------------------------------------------------------------------------------------/
  */
 Route::post('files', ['as' => 'storeFile', 'uses' => 'FilesController@store']);
+Route::post('files/{receiver}', ['as' => 'shareFileToUser', 'uses' => 'FilesController@shareToUser']);
 
 /**
  * Search files routes

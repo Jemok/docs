@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Group;
 use App\Repositories\ClassRepository;
+use App\Repositories\SearchRepository;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -12,27 +14,42 @@ use Illuminate\Support\Facades\Auth;
 
 class SearchController extends Controller
 {
-
-    public function search(SearchRequest $searchRequest, ClassRepository $classRepository){
+    /**
+     * Search a user
+     * @param SearchRequest $searchRequest
+     * @param SearchRepository $searchRepository
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function search(SearchRequest $searchRequest, SearchRepository $searchRepository){
 
         $query = $searchRequest->search;
 
         if($query){
 
-            $users = User::where('name', 'LIKE', "%$query%")
-                ->where('account_type', 0)
-                ->orWhere('email', 'LIKE', "%$query%")
-                ->paginate(10);
+            $users = $searchRepository->search($query);
 
-            foreach ($users as $user){
-
-                $user_class = $user->intake()->with('year', 'month', 'course', 'division')->first();
-
-                $class_name[] = $classRepository->makeName($user_class);
-            }
+            $class_name = $this->loopClassNames($users, new ClassRepository(new Group()));
 
         }
 
         return view('search.search_results', compact('users', 'class_name'));
+    }
+
+    /**
+     * loop the class names of the users
+     * @param $users
+     * @param ClassRepository $classRepository
+     * @return array
+     */
+    public function loopClassNames($users, ClassRepository $classRepository){
+
+        foreach ($users as $user){
+
+            $user_class = $user->intake()->with('year', 'month', 'course', 'division')->first();
+
+            $class_name[] = $classRepository->makeName($user_class);
+
+            return $class_name;
+        }
     }
 }
