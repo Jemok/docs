@@ -9,7 +9,7 @@
                 <h4 class="modal-title" id="gridSystemModalLabel">Modal title</h4>
             </div>
 
-                <form class="form-horizontal" method="post" action="{{ route('storeFile') }}">
+                <form class="form-horizontal" method="post" action="{{ route('storeFile') }}" enctype="multipart/form-data">
                     {{ csrf_field() }}
 
                     <div class="form-group {{ $errors->has('title') ? ' has-error' : '' }}">
