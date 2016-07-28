@@ -3,6 +3,21 @@
 
     <div class="container">
 
+        @if($errors->count())
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="alert alert-warning alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <strong>Warning!</strong> Better check your credentials. &nbsp;
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".upload_file_to_group">
+                        Try again
+                    </button>
+
+                </div>
+            </div>
+        </div>
+        @endif
+
         <div class="row">
 
             {{--left panel--}}
