@@ -50,3 +50,9 @@ Route::post('/user/schools', ['as' => 'storeUserSchoolDetails', 'uses' => 'UserS
  * ---------------------------------------------------------------------------------------------------------------------/
  */
 Route::post('files', ['as' => 'storeFile', 'uses' => 'FilesController@store']);
+
+/**
+ * Search files routes
+ * ---------------------------------------------------------------------------------------------------------------------/
+ */
+Route::get('search', ['as' => 'search', 'uses' => 'SearchController@search']);

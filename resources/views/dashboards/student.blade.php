@@ -27,12 +27,12 @@
                                 </thead>
 
                                 {{--search form--}}
-                                <form class="form-horizontal" method="post" action="#">
+                                <form class="form-horizontal" method="get" action="{{ route('search') }}">
                                     <div class="input-group changethisone col-md-12">
-                                        <input type="text" class="form-control" placeholder="Search">
-                                        <span class="input-group-addon">
+                                        <span class="input-group-addon" type="submit">
                                              <i class="glyphicon glyphicon-search"></i>
                                         </span>
+                                        <input type="text" name="search" class="form-control" placeholder="Search a person">
                                     </div>
                                 </form>
 
