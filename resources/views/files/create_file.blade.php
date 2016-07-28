@@ -17,14 +17,13 @@
 
                         <div class="col-md-8">
                             <input type="text" name="title" class="form-control" value="{{ old('title') }}">
+
+                            @if ($errors->has('title'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('title') }}</strong>
+                                </span>
+                            @endif
                         </div>
-
-                        @if ($errors->has('title'))
-                            <span class="help-block">
-                            <strong>{{ $errors->first('title') }}</strong>
-                        </span>
-                        @endif
-
                     </div>
 
                     <div class="form-group {{ $errors->has('description') ? ' has-error' : '' }}">
@@ -32,14 +31,13 @@
 
                         <div class="col-md-8">
                             <textarea class="form-control" rows="4"></textarea>
+
+                            @if ($errors->has('description'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('description') }}</strong>
+                                </span>
+                            @endif
                         </div>
-
-                        @if ($errors->has('description'))
-                            <span class="help-block">
-                            <strong>{{ $errors->first('description') }}</strong>
-                        </span>
-                        @endif
-
                     </div>
 
                     <div class="form-group {{ $errors->has('file') ? ' has-error' : '' }}">
@@ -47,14 +45,13 @@
 
                         <div class="col-md-8">
                             <input type="file" name="file" class="form-control" id="file">
+
+                            @if ($errors->has('file'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('file') }}</strong>
+                                </span>
+                            @endif
                         </div>
-
-                        @if ($errors->has('file'))
-                            <span class="help-block">
-                            <strong>{{ $errors->first('file') }}</strong>
-                        </span>
-                        @endif
-
                     </div>
 
                     <div class="modal-footer">

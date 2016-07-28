@@ -4,6 +4,16 @@
     <div class="container">
 
         <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="alert alert-warning alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <strong>Warning!</strong> Better check your credentials. &nbsp;
+                    <button type="button" class="btn btn-primary" name="try_again">Try again</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
 
             {{--left panel--}}
             <div class="col-md-3">
@@ -68,11 +78,36 @@
                                 <div class="tab-content tab-header">
                                     <div role="tabpanel" class="tab-pane tab-space active col-md-12" id="home">
 
+                                            <p class="col-md-12"><span class="glyphicon glyphicon-check" aria-hidden="true"></span>&nbsp;You have been automatically placed to a class group.</p>
+                                            <p class="col-md-12"><span class="glyphicon glyphicon-check" aria-hidden="true"></span>&nbsp;Now you can share files to individual students.</p>
+                                            <p class="col-md-12"><span class="glyphicon glyphicon-check" aria-hidden="true"></span>&nbsp;You can also share files to the entire group.</p>
+
+                                        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                                            <div class="panel panel-default panel-file">
+                                                <div class="panel-heading" role="tab" id="headingOne">
+                                                    <h5 class="panel-title">
+                                                        <strong>
+                                                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                                Group files Item #1
+                                                            </a>
+                                                        </strong>
+                                                    </h5>
+                                                </div>
+                                                <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                                    <div class="panel-body">
+                                                        ....file name button
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
                                         @if(\Auth::user()->login()->first()->status == 0)
                                         <p class="col-md-12"><span class="glyphicon glyphicon-check" aria-hidden="true"></span>&nbsp;You have been automatically placed to a class group.</p>
                                         <p class="col-md-12"><span class="glyphicon glyphicon-check" aria-hidden="true"></span>&nbsp;Now you can share files to individual students.</p>
                                         <p class="col-md-12"><span class="glyphicon glyphicon-check" aria-hidden="true"></span>&nbsp;You can also share files to the entire group.</p>
                                         @endif
+
 
                                     </div>
                                     <div role="tabpanel" class="tab-pane tab-space col-md-12" id="settings">

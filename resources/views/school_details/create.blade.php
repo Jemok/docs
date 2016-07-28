@@ -5,7 +5,7 @@
         <div class="row">
 
             <div class="col-md-4">
-                <div class="panel panel-default">
+                <div class="panel panel-default ">
                     <div class="panel-body">
                         <h5 style="text-align: center;"><strong><u>Select year to join a group</u></strong></h5>
                         <form class="form-horizontal" method="post" action="{{ route('storeUserSchoolDetails') }}">
