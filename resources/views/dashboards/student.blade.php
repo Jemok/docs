@@ -4,19 +4,6 @@
     <div class="container">
 
         <div class="row">
-            <div class="col-md-6 col-md-offset-3">
-                <div class="alert alert-warning alert-dismissible" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <strong>Warning!</strong> Better check your credentials. &nbsp;
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".upload_file_to_group">
-                        Try again
-                    </button>
-
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
 
             {{--left panel--}}
             <div class="col-md-3">
@@ -64,6 +51,16 @@
 
             {{--right panel--}}
             <div class="col-md-9">
+
+                <div class="alert alert-warning alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <strong>Warning!</strong> Better check your upload. &nbsp;
+                    <a data-toggle="modal" data-target=".upload_file_to_group">
+                        Try again
+                    </a>
+
+                </div>
+
                 <div class="panel panel-default">
                     <div class="panel-heading"><strong>Student Dashboard</strong></div>
 
