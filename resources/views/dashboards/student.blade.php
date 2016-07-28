@@ -72,6 +72,25 @@
                                             <p class="col-md-12"><span class="glyphicon glyphicon-check" aria-hidden="true"></span>&nbsp;Now you can share files to individual students.</p>
                                             <p class="col-md-12"><span class="glyphicon glyphicon-check" aria-hidden="true"></span>&nbsp;You can also share files to the entire group.</p>
 
+                                        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                                            <div class="panel panel-default panel-file">
+                                                <div class="panel-heading" role="tab" id="headingOne">
+                                                    <h5 class="panel-title">
+                                                        <strong>
+                                                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                                Group files Item #1
+                                                            </a>
+                                                        </strong>
+                                                    </h5>
+                                                </div>
+                                                <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                                    <div class="panel-body">
+                                                        ....file name button
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
 
                                     </div>
                                     <div role="tabpanel" class="tab-pane tab-space col-md-12" id="settings">
