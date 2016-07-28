@@ -3,6 +3,7 @@
 
     <div class="container">
 
+        @if($errors->count())
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
                 <div class="alert alert-warning alert-dismissible" role="alert">
@@ -15,6 +16,7 @@
                 </div>
             </div>
         </div>
+        @endif
 
         <div class="row">
 

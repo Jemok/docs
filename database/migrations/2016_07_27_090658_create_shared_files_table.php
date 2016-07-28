@@ -14,11 +14,19 @@ class CreateSharedFilesTable extends Migration
     {
         Schema::create('shared_files', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned();
+            $table->integer('user_id')->index()->unsigned();
+            $table->integer('share_type')->unsigned();
+            $table->integer('file_id')->index()->unsigned();
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users');
-            $table->boolean('receiver');
+            $table->foreign('file_id')
+                  ->references('id')
+                  ->on('files');
+
+            $table->integer('receiver')->index()->unsigned();
+
+
             $table->timestamps();
         });
     }

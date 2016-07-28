@@ -128,8 +128,30 @@ class User extends Authenticatable
         return $this->hasMany(Lecturer::class);
     }
 
+    /**
+     * The login status of a users account
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
     public function login(){
 
         return $this->hasOne(LoginStatus::class);
+    }
+
+    /**
+     * User Class_member Relationship
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function class_membership(){
+
+        return $this->hasMany(Class_member::class);
+    }
+
+    /**
+     * User SharedFile Relationship
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function shared_files(){
+
+        return $this->hasMany(Shared_file::class);
     }
 }

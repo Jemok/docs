@@ -8,6 +8,7 @@
 
 namespace App\Repositories;
 use App\File;
+use Illuminate\Support\Facades\Auth;
 
 class FileRepository
 {
@@ -28,10 +29,35 @@ class FileRepository
 
     public function store($request){
 
-        // getting all of the post data
-        //$file = $request->file('file');
+        $file = $request->file('file');
 
-        //dd($file);
+        $fileOriginalName = $file->getClientOriginalName();
+
+        $destinationPath = 'uploads';
+
+        $extension = $request->file('file')->getClientOriginalExtension();
+
+        $fileName = basename($fileOriginalName, '.'.$extension);
+
+        $workingName = $fileName.'-'.rand(11111,99999).'.'.$extension;
+
+        $request->file('file')->move($destinationPath, $workingName);
+
+        $uploaded_file = $this->model->create([
+
+            'file_name' => $workingName,
+            'title'     => $request->title,
+            'description' => $request->description,
+            'extension'   => $extension,
+        ]);
+
+        Auth::user()->shared_files()->create([
+
+            'share_type' => 1,
+            'receiver'  => Auth::user()->class_membership()->first()->group_id,
+            'file_id'   => $uploaded_file->id
+        ]);
+
     }
 
 }
