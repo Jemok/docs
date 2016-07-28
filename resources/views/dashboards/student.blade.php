@@ -19,21 +19,31 @@
                             {{--@include('teams.create_team')--}}
                         </p>
 
-                        <p style="text-align: center;">
-                            <strong><u>Group name</u></strong>
-                        </p>
-
                         <div class="col-md-12">
                             <table class="table">
                                 <thead>
                                 <td><strong><u>Group members</u></strong></td>
                                 </thead>
+
+                                {{--search form--}}
+                                <form class="form-horizontal" method="post" action="#">
+                                    <div class="input-group changethisone col-md-12">
+                                        <input type="text" class="form-control" placeholder="Search">
+                                        <span class="input-group-addon">
+                                             <i class="glyphicon glyphicon-search"></i>
+                                        </span>
+                                    </div>
+                                </form>
+
                                 <tbody>
                                 <tr>
-                                    <td>Name1</td>
+                                    <td>Reuben njuguna</td>
                                 </tr>
                                 </tbody>
                             </table>
+
+
+
                         </div>
                     </div>
                 </div>
@@ -42,48 +52,36 @@
             {{--right panel--}}
             <div class="col-md-9">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Student Dashboard</div>
+                    <div class="panel-heading"><strong>Student Dashboard</strong></div>
 
-                    <div class="panel-body">
-
-                        <p>You are logged in as a student</p>
+                    <div class="panel-body panel-height" >
 
                         <div class="row">
 
-                                <p class="col-md-5 col-md-offset-7"><span class="glyphicon glyphicon-check" aria-hidden="true"></span>&nbsp;You have been automatically placed to a class group.</p>
-                                <p class="col-md-5 col-md-offset-7"><span class="glyphicon glyphicon-check" aria-hidden="true"></span>&nbsp;Now you can share files to individual students.</p>
-                                <p class="col-md-5 col-md-offset-7"><span class="glyphicon glyphicon-check" aria-hidden="true"></span>&nbsp;You can also share to the entire group.</p>
-                        </div>
+                                <!-- Nav tabs -->
+                                <ul class="nav nav-tabs" role="tablist">
+                                    <li role="presentation" class="active col-md-6 text-center"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Group activities<span class="badge">4</span></a></li>
+                                    <li role="presentation" class="col-md-6 text-center"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Individual activities <span class="badge">4</span></a></li>
+                                </ul>
 
-                        <hr>
+                                <!-- Tab panes -->
+                                <div class="tab-content tab-header">
+                                    <div role="tabpanel" class="tab-pane tab-space active col-md-12" id="home">
 
-                        <div class="row">
+                                            <p class="col-md-12"><span class="glyphicon glyphicon-check" aria-hidden="true"></span>&nbsp;You have been automatically placed to a class group.</p>
+                                            <p class="col-md-12"><span class="glyphicon glyphicon-check" aria-hidden="true"></span>&nbsp;Now you can share files to individual students.</p>
+                                            <p class="col-md-12"><span class="glyphicon glyphicon-check" aria-hidden="true"></span>&nbsp;You can also share files to the entire group.</p>
 
-                            <div class="col-md-6">
-                                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#group_files" aria-expanded="false" aria-controls="collapseExample">
-                                    Group activities
-                                </button>
-                                <a href="#"><span class="badge" >1</span></a>
-                                <div class="collapse" id="group_files">
-                                    <div class="well">
-                                        group feeds
+
+                                    </div>
+                                    <div role="tabpanel" class="tab-pane tab-space col-md-12" id="settings">
+                                        <p class="col-md-12"><span class="glyphicon glyphicon-check" aria-hidden="true"></span>&nbsp;You have been automatically placed to a class group.</p>
+                                        <p class="col-md-12"><span class="glyphicon glyphicon-check" aria-hidden="true"></span>&nbsp;Now you can share files to individual students.</p>
+                                        <p class="col-md-12"><span class="glyphicon glyphicon-check" aria-hidden="true"></span>&nbsp;You can also share files to the entire group.</p>
                                     </div>
                                 </div>
 
-                            </div>
 
-                            <div class="col-md-6">
-                                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#inbox" aria-expanded="false" aria-controls="collapseExample">
-                                    Individual activities
-                                </button>
-                                <a href="#"><span class="badge" >1</span></a>
-                                <div class="collapse" id="inbox">
-                                    <div class="well">
-                                        personal feeds
-                                    </div>
-                                </div>
-
-                            </div>
                         </div>
                     </div>
                 </div>

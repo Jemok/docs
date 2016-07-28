@@ -61,7 +61,7 @@ class User extends Authenticatable
      */
     public function isStudent(){
 
-        if(Auth::user()->account_type == 0){
+        if(Auth::user()->account_type == 1){
             return true;
         }
         return false;

@@ -5,15 +5,6 @@
         <div class="row">
 
             <div class="col-md-4">
-                <div class="alert alert-info alert-dismissible" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <strong>Successful!</strong> Your group has been created successfully.
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-4">
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <h5 style="text-align: center;"><strong><u>Select year to join a group</u></strong></h5>
