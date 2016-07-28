@@ -1,6 +1,6 @@
 @extends('layouts.app')
-
 @section('content')
+
     <div class="container">
 
         <div class="row">
@@ -13,10 +13,10 @@
                         <h5 style="text-align: center;"><u><strong>Upload file to a group</strong></u></h5>
                         <p style="text-align: center;">
                             <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#upload_file_to_group">
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".upload_file_to_group">
                                 Upload file
                             </button>
-                            {{--@include('teams.create_team')--}}
+                            @include('files.create_file')
                         </p>
 
                         <div class="col-md-12">
