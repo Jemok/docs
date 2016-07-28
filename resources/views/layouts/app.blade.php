@@ -41,7 +41,11 @@
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ url('/') }}">
                     @if(!Auth::guest())
-                    <strong>2013 September Bsc Information Technology</strong>
+                    <strong>
+                        @if(isset($class_name))
+                        {{ $class_name }}
+                        @endif
+                    </strong>
                     @else
                         <strong>Docs</strong>
                     @endif

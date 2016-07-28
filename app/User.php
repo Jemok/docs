@@ -127,4 +127,9 @@ class User extends Authenticatable
 
         return $this->hasMany(Lecturer::class);
     }
+
+    public function login(){
+
+        return $this->hasOne(LoginStatus::class);
+    }
 }

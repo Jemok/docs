@@ -58,7 +58,7 @@ class UserIntake extends Model
      */
     public function month(){
 
-        return $this->belongsTo(Month_of_intake::class);
+        return $this->belongsTo(Month_of_intake::class, 'month_of_intake_id');
     }
 
     /**
@@ -67,7 +67,7 @@ class UserIntake extends Model
      */
     public function year(){
 
-        return $this->belongsTo(Year_of_intake::class);
+        return $this->belongsTo(Year_of_intake::class, 'year_of_intake_id');
     }
 
     /**
@@ -76,6 +76,6 @@ class UserIntake extends Model
      */
     public function division(){
 
-        return $this->belongsTo(Class_division::class);
+        return $this->belongsTo(Class_division::class, 'class_division_id');
     }
 }

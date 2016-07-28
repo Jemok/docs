@@ -92,11 +92,22 @@
 
                                         </div>
 
-                                    </div>
-                                    <div role="tabpanel" class="tab-pane tab-space col-md-12" id="settings">
+                                        @if(\Auth::user()->login()->first()->status == 0)
                                         <p class="col-md-12"><span class="glyphicon glyphicon-check" aria-hidden="true"></span>&nbsp;You have been automatically placed to a class group.</p>
                                         <p class="col-md-12"><span class="glyphicon glyphicon-check" aria-hidden="true"></span>&nbsp;Now you can share files to individual students.</p>
                                         <p class="col-md-12"><span class="glyphicon glyphicon-check" aria-hidden="true"></span>&nbsp;You can also share files to the entire group.</p>
+                                        @endif
+
+
+                                    </div>
+                                    <div role="tabpanel" class="tab-pane tab-space col-md-12" id="settings">
+
+                                        @if(\Auth::user()->login()->first()->status == 0)
+                                        <p class="col-md-12"><span class="glyphicon glyphicon-check" aria-hidden="true"></span>&nbsp;You have been automatically placed to a class group.</p>
+                                        <p class="col-md-12"><span class="glyphicon glyphicon-check" aria-hidden="true"></span>&nbsp;Now you can share files to individual students.</p>
+                                        <p class="col-md-12"><span class="glyphicon glyphicon-check" aria-hidden="true"></span>&nbsp;You can also share files to the entire group.</p>
+                                        @endif
+
                                     </div>
                                 </div>
 

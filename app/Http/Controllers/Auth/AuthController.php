@@ -4,11 +4,13 @@ namespace App\Http\Controllers\Auth;
 
 use App\Repositories\CampusRepository;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Illuminate\Http\Request;
+
 
 class AuthController extends Controller
 {
@@ -110,6 +112,8 @@ class AuthController extends Controller
                 'campus_id' => $data['campus']
             ]);
 
+            $this->setLoginStatus($user);
+
         }else{
             $user = User::create([
                 'name' => $data['name'],
@@ -123,9 +127,25 @@ class AuthController extends Controller
              */
             //$user->student()->create([]);
             $user->school_details()->create([]);
+
+            $this->setLoginStatus($user);
         }
 
         return $user;
+    }
+
+    /**
+     * Set the login status of a user to
+     * 0 which denotes that the user is login in the application for the
+     * first time
+     * @param User $user
+     */
+    protected function setLoginStatus(User $user){
+
+        $user->login()->create([
+
+            'status' => 0
+        ]);
     }
 
     /**
@@ -151,6 +171,27 @@ class AuthController extends Controller
         \Auth::guard($this->getGuard())->login($this->create($request->all(), $request));
 
         return redirect($this->redirectPath());
+    }
+
+    /**
+     * Log the user out of the application.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function logout()
+    {
+
+        $login_status = Auth::user()->login()->first();
+
+        $login_status->update([
+
+            'status' => 1
+
+        ]);
+
+        \Auth::guard($this->getGuard())->logout();
+
+        return redirect(property_exists($this, 'redirectAfterLogout') ? $this->redirectAfterLogout : '/');
     }
 
 }
