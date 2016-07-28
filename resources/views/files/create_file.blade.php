@@ -2,7 +2,7 @@
 <!-- Small modal -->
 
 <div class="modal fade upload_file_to_group" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-    <div class="modal-dialog role="document">
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -30,7 +30,7 @@
                         <label for="description" class="col-md-3 control-label">Description:</label>
 
                         <div class="col-md-8">
-                            <textarea class="form-control" rows="4"></textarea>
+                            <textarea class="form-control" rows="4" name="description"></textarea>
 
                             @if ($errors->has('description'))
                                 <span class="help-block">
