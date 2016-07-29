@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class SearchRequest extends Request
+class ShareToUserRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,9 @@ class SearchRequest extends Request
     public function rules()
     {
         return [
-
-            'search' => 'required'
+            'title' => 'required',
+            'description' => 'required',
+            'file'        => 'required|mimes:pdf,odt,pptx,docx,xlsx'
         ];
     }
 }
