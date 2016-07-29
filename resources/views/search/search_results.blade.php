@@ -24,10 +24,9 @@
 
                 {{--right panel--}}
             <div class="col-md-9">
+                @include('flash.flash_message')
                 <div class="panel panel-default panel-search-result">
                     <div class="panel-body">
-
-
 
                         <div class="col-md-12">
                             <table class="table">
