@@ -24,10 +24,9 @@
 
                 {{--right panel--}}
             <div class="col-md-9">
-                <div class="panel panel-default">
+                @include('flash.flash_message')
+                <div class="panel panel-default panel-search-result">
                     <div class="panel-body">
-
-
 
                         <div class="col-md-12">
                             @if($users->count())
@@ -56,7 +55,7 @@
                                                     {{ csrf_field() }}
 
                                                     <div class="form-group {{ $errors->has('title') ? ' has-error' : '' }}">
-                                                        <label for="title" class="col-md-3 control-label">Title:</label>
+                                                        <label for="title" class="col-md-4 control-label">Title:</label>
 
                                                         <div class="col-md-8">
                                                             <input id="title" type="text" class="form-control" name="title" value="{{ old('title') }}">
@@ -69,8 +68,8 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="form-group {{ $errors->has('title') ? ' has-error' : '' }}">
-                                                        <label for="description" class="col-md-3 control-label">Description:</label>
+                                                    <div class="form-group {{ $errors->has('description') ? ' has-error' : '' }}">
+                                                        <label for="description" class="col-md-4 control-label">Description:</label>
 
                                                         <div class="col-md-8">
                                                             <textarea class="form-control" rows="3" name="description">{{ old('description') }}</textarea>
@@ -83,8 +82,8 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="form-group {{ $errors->has('title') ? ' has-error' : '' }}">
-                                                        <label for="file" class="col-md-3 control-label">Upload file:</label>
+                                                    <div class="form-group {{ $errors->has('file') ? ' has-error' : '' }}">
+                                                        <label for="file" class="col-md-4 control-label">Upload file:</label>
 
                                                         <div class="col-md-8">
                                                             <input id="file" type="file" class="form-control" name="file" value="{{ old('file') }}">
@@ -97,7 +96,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <div class="col-md-3 col-md-offset-6">
+                                                        <div class="col-md-3 col-md-offset-5">
                                                             <button class="btn btn-primary" type="submit" name="submit">Upload</button>
                                                         </div>
 

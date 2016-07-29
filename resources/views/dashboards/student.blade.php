@@ -15,7 +15,7 @@
                         <p style="text-align: center;">
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".upload_file_to_group">
-                                Upload file
+                                Upload file&nbsp;<span class="glyphicon glyphicon-share" aria-hidden="true"></span>
                             </button>
                             @include('files.create_file')
                         </p>
@@ -42,9 +42,6 @@
                                 </tr>
                                 </tbody>
                             </table>
-
-
-
                         </div>
                     </div>
                 </div>
@@ -89,25 +86,17 @@
                                             <p class="col-md-12"><span class="glyphicon glyphicon-check" aria-hidden="true"></span>&nbsp;You can also share files to the entire group.</p>
                                         @endif
 
-                                        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                                            <div class="panel panel-default panel-file">
-                                                <div class="panel-heading" role="tab" id="headingOne">
-                                                    <h5 class="panel-title">
-                                                        <strong>
-                                                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                                                Group files Item #1
-                                                            </a>
-                                                        </strong>
-                                                    </h5>
-                                                </div>
-                                                <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-                                                    <div class="panel-body">
-                                                        ....file name button
-                                                    </div>
-                                                </div>
-                                            </div>
+                                        <table class="table">
+                                            <thead>
+                                            <td>icon and filename | title</td>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td>description | <button class="btn btn-primary btn-sm">Download  <span class="glyphicon glyphicon-download-alt"></button> </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
 
-                                        </div>
 
                                     </div>
                                     <div role="tabpanel" class="tab-pane tab-space col-md-12" id="settings">
