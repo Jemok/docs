@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use App\Repositories\CampusRepository;
+use App\Repositories\ClassMembersRepository;
 use App\Repositories\ClassRepository;
 use App\Repositories\CourseRepository;
 use App\Repositories\GroupRepository;
@@ -35,6 +36,7 @@ class HomeController extends Controller
      * @param GroupRepository $groupRepository
      * @param SharedFilesRepository $sharedFilesRepository
      * @param ClassRepository $classRepository
+     * @param ClassMembersRepository $classMembersRepository
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index(CampusRepository $campusRepository,
@@ -43,7 +45,8 @@ class HomeController extends Controller
                           MonthRepository $monthRepository,
                           GroupRepository $groupRepository,
                           SharedFilesRepository $sharedFilesRepository,
-                          ClassRepository $classRepository
+                          ClassRepository $classRepository,
+                          ClassMembersRepository $classMembersRepository
     )
     {
         /**
@@ -73,6 +76,13 @@ class HomeController extends Controller
             $user_class = Auth::user()->intake()->with('year', 'month', 'course', 'division')->first();
 
             $class_name = $classRepository->makeName($user_class);
+
+            $members = $classMembersRepository->getClassMembers(Auth::user()->class_membership()->first()->group_id);
+
+            foreach($members as $member){
+
+                $members[] = $member->user;
+            }
 
             if(Auth::user()->login()->first()->status == 1){
 
