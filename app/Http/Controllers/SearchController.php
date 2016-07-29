@@ -20,7 +20,7 @@ class SearchController extends Controller
      * @param SearchRepository $searchRepository
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function search(SearchRequest $searchRequest, SearchRepository $searchRepository){
+    public function search(SearchRequest $searchRequest, SearchRepository $searchRepository, ClassRepository $classRepository){
 
         $query = $searchRequest->search;
 
@@ -28,11 +28,13 @@ class SearchController extends Controller
 
             $users = $searchRepository->search($query);
 
-            $class_name = $this->loopClassNames($users, new ClassRepository(new Group()));
-
+            $group_names = $this->loopClassNames($users, new ClassRepository(new Group()));
         }
 
-        return view('search.search_results', compact('users', 'class_name'));
+        $user_class = Auth::user()->intake()->with('year', 'month', 'course', 'division')->first();
+
+        $class_name = $classRepository->makeName($user_class);
+        return view('search.search_results', compact('users', 'group_names', 'class_name'));
     }
 
     /**

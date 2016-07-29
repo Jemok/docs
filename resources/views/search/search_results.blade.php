@@ -30,6 +30,7 @@
 
 
                         <div class="col-md-12">
+                            @if($users->count())
                             <table class="table">
                                 <thead>
                                 <td><strong>Name</strong></td>
@@ -37,18 +38,21 @@
                                 <td><strong>Share</strong></td>
                                 </thead>
                                 <tbody>
+
+                                @foreach($users as $user)
+                                    @foreach($group_names as $group_name)
                                 <tr>
-                                    <td>reuben njuguna</td>
-                                    <td>jfkejfk cwjfekfjk skfjekfjk swkfjk jkwfjk jckjk</td>
+                                    <td>{{ $user->name }}</td>
+                                    <td>{{ $group_name }}</td>
                                     <td>
-                                        <a data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                                        <a data-toggle="collapse" href="#share_file_{{$user->id}}" aria-expanded="false" aria-controls="collapseExample">
                                             Share file
                                         </a>
 
-                                        <div class="collapse" id="collapseExample">
-                                            <div class="well ">
+                                        <div class="collapse @if(Session::has("receiver")) @if(session("receiver") == $user->id) in @endif @endif" id="share_file_{{$user->id}}">
+                                            <div class="well">
 
-                                                <form class="form-horizontal" method="post" action="#" enctype="multipart/form-data">
+                                                <form class="form-horizontal" method="post" action="{{ route('shareFileToUser', [$user->id]) }}" enctype="multipart/form-data">
                                                     {{ csrf_field() }}
 
                                                     <div class="form-group {{ $errors->has('title') ? ' has-error' : '' }}">
@@ -104,8 +108,13 @@
                                         </div>
                                     </td>
                                 </tr>
+                                @endforeach
+                                    @endforeach
                                 </tbody>
                             </table>
+                            @else
+                                No results found
+                            @endif
                         </div>
 
 

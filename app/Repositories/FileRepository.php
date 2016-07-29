@@ -27,7 +27,7 @@ class FileRepository
         $this->model = $file;
     }
 
-    public function store($request){
+    public function store($request, $receiver, $share_type){
 
         $file = $request->file('file');
 
@@ -53,8 +53,8 @@ class FileRepository
 
         Auth::user()->shared_files()->create([
 
-            'share_type' => 1,
-            'receiver'  => Auth::user()->class_membership()->first()->group_id,
+            'share_type' => $share_type,
+            'receiver'  => $receiver,
             'file_id'   => $uploaded_file->id
         ]);
 
