@@ -15,6 +15,7 @@
                                         <span class="input-group-addon" type="submit">
                                              <i class="glyphicon glyphicon-search"></i>
                                         </span>
+
                                 <input type="text" name="search" class="form-control" placeholder="Search a person">
                             </div>
                         </form>
@@ -25,6 +26,12 @@
                 {{--right panel--}}
             <div class="col-md-9">
                 @include('flash.flash_message')
+
+                <div class="alert alert-warning alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <strong>Warning!</strong> Better check your upload.Try again
+                </div>
+
                 <div class="panel panel-default panel-search-result">
                     <div class="panel-body">
 

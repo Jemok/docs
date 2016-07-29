@@ -92,7 +92,7 @@
                                             </thead>
                                             <tbody>
                                             <tr>
-                                                <td>description | <button class="btn btn-primary btn-sm">Download  <span class="glyphicon glyphicon-download-alt"></button> </td>
+                                                <td>description | <button class="btn btn-primary btn-sm">Download <span class="glyphicon glyphicon-download-alt"></span></button> </td>
                                             </tr>
                                             </tbody>
                                         </table>
