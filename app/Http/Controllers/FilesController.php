@@ -47,7 +47,7 @@ class FilesController extends Controller
 
         $user = User::findOrFail($receiver);
 
-        Session::flash('flash_message', 'Your file was shared to'. $user->name .'successfully');
+        Session::flash('flash_message', 'Your file was shared to ' . $user->name . ' successfully');
 
         return redirect()->back();
     }
