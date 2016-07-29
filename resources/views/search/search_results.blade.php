@@ -13,8 +13,9 @@
                         <form class="form-horizontal" method="get" action="{{ route('search') }}">
                             <div class="input-group changethisone col-md-12">
                                         <span class="input-group-addon" type="submit">
-                                             <i class="glyphicon glyphicon-search"></i>
+                                             <i class="glyphicon glyphicon-search"></i>gi
                                         </span>
+
                                 <input type="text" name="search" class="form-control" placeholder="Search a person">
                             </div>
                         </form>
