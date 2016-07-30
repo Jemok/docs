@@ -7,7 +7,7 @@
 
             {{--left panel--}}
             <div class="col-md-3">
-                <div class="panel panel-default left-panel-height">
+                <div class="panel panel-default panel-left">
                     <div class="panel-body">
 
                         {{--search form--}}
@@ -19,16 +19,63 @@
                                         </span>
                             </div>
                         </form>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <table class="table">
+                                    <thead>
+                                    <td><strong>My Groups</strong></td>
+                                    </thead>
+                                    <tbody>
+                                    <td><a href="{{ route('showGroup')  }}">Bit 2013 BSc Information technology</a></td>
+                                    </tbody>
+                                </table>
+
+                            </div>
+
+                        </div>
+
                     </div>
                 </div>
             </div>
 
             {{--right panel--}}
-            <div class="col-md-8 col-md-offset-1">
-                <div class="panel panel-default right-panel-height">
-                    <div class="panel-heading"><strong>Lecturer's Dashboard</strong></div>
-
+            <div class="col-md-9">
+                <div class="panel panel-default panel-right">
+                    <div class="panel-heading"><strong>Files</strong></div>
                     <div class="panel-body">
+
+                        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                            <div class="panel panel-default panel-lecturer">
+                                <div class="panel-heading" role="tab" id="headingOne">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                            Sent files
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                    <div class="panel-body panel-lecturer-body">
+                                       <table class="table">
+                                           <thead>
+                                           <td>Name and icon</td>
+                                           <td>Title</td>
+                                           <td>Description</td>
+                                           <td>Sent to</td>
+                                           </thead>
+                                           <tbody>
+                                           <tr>
+                                               <td>notes</td>
+                                               <td>HCI</td>
+                                               <td>Scholary work</td>
+                                               <td>2015 Bsc Information technology</td>
+                                           </tr>
+                                           </tbody>
+                                       </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
                     </div>
                 </div>

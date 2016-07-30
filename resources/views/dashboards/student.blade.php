@@ -38,9 +38,13 @@
 
                                 @if($members->count())
                                 <tbody>
+
                                 @foreach($members as $member)
                                 <tr>
                                     <td>{{ $member->user->name }}</td>
+                                    <td>
+                                        <a href="{{ route('allMembers')  }}">More Group members&nbsp;<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+                                    </td>
                                 </tr>
                                 @endforeach
                                 </tbody>
