@@ -10,6 +10,7 @@ namespace App\Repositories;
 
 
 use App\Group;
+use App\UserIntake;
 use App\UserSchoolDetails;
 use Illuminate\Support\Facades\Auth;
 use App\Repositories\ClassRepository;
@@ -48,13 +49,9 @@ class UserSchoolDetailsRepository
 
         $class_repository = new ClassRepository(new Group());
 
-        $class = $class_repository->checkIfExists($request->campus,
-                                            $request->course,
-                                            $request->year,
-                                            $request->month,
-                                            $request->group);
+        $class_check = $class_repository->checkIfExists($request->course);
 
-        if($class == null){
+        if($class_check == null){
 
             $class = $class_repository->store($request->campus,
                                     $request->course,
@@ -74,7 +71,7 @@ class UserSchoolDetailsRepository
             }
 
         }else{
-            $member_answer = $class_repository->addMember($class);
+            $member_answer = $class_repository->addMember($class_check);
 
             if($member_answer == true){
 
@@ -85,7 +82,7 @@ class UserSchoolDetailsRepository
             }
         }
 
-        return $class;
+        return $class_check;
     }
 
 

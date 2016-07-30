@@ -11,6 +11,7 @@ use App\Repositories\GroupRepository;
 use App\Repositories\MonthRepository;
 use App\Repositories\SharedFilesRepository;
 use App\Repositories\YearRepository;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -49,65 +50,50 @@ class HomeController extends Controller
                           ClassMembersRepository $classMembersRepository
     )
     {
-        /**
-         * Check whether a user school details
-         * are set.
-         */
-        if(Auth::user()->isStudent() && Auth::user()->hasSchoolDetails() == 0){
+        if((Auth::user()->isStudent()) && (Auth::user()->hasSchoolDetails(Auth::user()->id) == 0)) {
             $campuses = $campusRepository->index();
             $courses = $courseRepository->index();
             $years = $yearRepository->index();
             $months = $monthRepository->index();
             $groups = $groupRepository->index();
+
+
             return view('school_details.create', compact('campuses', 'courses', 'years', 'months', 'groups'));
-        }
 
-        /**
-         * Return the student's dashboard
-         */
-        if(Auth::user()->isStudent() && Auth::user()->hasSchoolDetails() == 1){
+        }else if((Auth::user()->isStudent()) && (Auth::user()->hasSchoolDetails(Auth::user()->id) == 1)) {
 
-            //$user_groups = $groupRepository->userGroups(\Auth::user()->id);
 
-            //$group_files = $sharedFilesRepository->getForUserGroup($user_groups);
+                //$user_groups = $groupRepository->userGroups(\Auth::user()->id);
 
-            //$inbox_files = $sharedFilesRepository->getForUserInbox(Auth::user()->id);
+                //$group_files = $sharedFilesRepository->getForUserGroup($user_groups);
 
-            $user_class = Auth::user()->intake()->with('year', 'month', 'course', 'division')->first();
+                //$inbox_files = $sharedFilesRepository->getForUserInbox(Auth::user()->id);
 
-            $class_name = $classRepository->makeName($user_class);
+                $user_class = Auth::user()->intake()->with('year', 'month', 'course', 'division')->first();
 
-            $members = $classMembersRepository->getClassMembers(Auth::user()->class_membership()->first()->group_id);
+                $class_name = $classRepository->makeName($user_class);
 
-            foreach($members as $member){
+                $members = $classMembersRepository->getClassMembers(Auth::user()->class_membership()->first()->group_id);
 
-                $members[] = $member->user;
+
+                if (Auth::user()->login()->first()->status == 1) {
+
+                    $login_status = 1;
+                } else {
+                    $login_status = 0;
+
+                }
+
+                return view('dashboards.student', compact('group_files', 'inbox_files', 'class_name', 'login_status', 'members'));
+            }else if(Auth::user()->isLecturer()) {
+
+                //$lecturer_group_ids = $classRepository->getLecturerClasses(Auth::user()->id);
+
+                //$lecturer_groups = $groupRepository->getLecturerGroups($lecturer_group_ids);
+
+                $class_name = '';
+
+                return view('dashboards.lecturer', compact('lecturer_groups', 'class_name'));
             }
-
-            if(Auth::user()->login()->first()->status == 1){
-
-                $login_status = 1;
-            }else{
-                $login_status = 0;
-
-            }
-
-            return view('dashboards.student', compact('group_files', 'inbox_files', 'class_name', 'login_status'));
         }
-
-        /**
-         * Return the lecturer's dashboard
-         */
-        if(Auth::user()->isLecturer()){
-
-            //$lecturer_group_ids = $classRepository->getLecturerClasses(Auth::user()->id);
-
-            //$lecturer_groups = $groupRepository->getLecturerGroups($lecturer_group_ids);
-
-            $class_name = '';
-
-            return view('dashboards.lecturer', compact('lecturer_groups', 'class_name'));
-        }
-    }
-
 }

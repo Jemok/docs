@@ -19,7 +19,7 @@ class Class_member extends Model
     protected $fillable = [
 
         'member_type',
-        'user_id'
+        'user_id',
     ];
 
     /**
@@ -31,12 +31,13 @@ class Class_member extends Model
         return $this->belongsTo(User::class);
     }
 
+
     /**
      * Group User Relationship
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function group(){
 
-        return $this->belongsTo(Group::class);
+        return $this->belongsTo(UserIntake::class);
     }
 }

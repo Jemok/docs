@@ -34,12 +34,12 @@ class User extends Authenticatable
     }
 
     /**
-     * Return the status of a students school details
+     * @param $user_id
      * @return mixed
      */
-    public function hasSchoolDetails(){
+    public function hasSchoolDetails($user_id){
 
-        return $this->school_details()->first()->status;
+       return $this->school_details()->where('user_id', $user_id)->first()->status;
     }
 
 

@@ -35,6 +35,6 @@ class ClassMembersRepository
      */
     public function getClassMembers($class_id){
 
-        return $this->model->where('group_id', $class_id)->with('user')->get();
+        return $this->model->where('group_id', $class_id)->with('user')->take(8)->get();
     }
 }

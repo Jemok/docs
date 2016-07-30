@@ -78,4 +78,13 @@ class UserIntake extends Model
 
         return $this->belongsTo(Class_division::class, 'class_division_id');
     }
+
+    /**
+     * Group Class_member relationship
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function members(){
+
+        return $this->hasMany(Class_member::class);
+    }
 }

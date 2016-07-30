@@ -15,7 +15,7 @@ class CreateClassMembersTable extends Migration
         Schema::create('class_members', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->index()->unsigned();
-            $table->integer('group_id')->unsigned();
+            $table->integer('group_id')->index()->unsigned();
             $table->integer('member_type');
             $table->foreign('user_id')
                 ->references('id')

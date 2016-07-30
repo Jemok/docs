@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Requests\FileRequest;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Validator;
 

@@ -15,7 +15,6 @@ class CreateGroupsTable extends Migration
         Schema::create('groups', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('campus_id')->index()->unsigned();
-            $table->integer('user_id')->index()->unsigned();
             $table->integer('month_of_intake_id')->index()->unsigned();
             $table->integer('course_id')->index()->unsigned();
             $table->integer('year_of_intake_id')->index()->unsigned();

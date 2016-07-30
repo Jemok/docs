@@ -10,6 +10,7 @@ namespace App\Repositories;
 
 
 use App\Group;
+use App\UserIntake;
 
 class ClassRepository
 {
@@ -34,46 +35,38 @@ class ClassRepository
             'course_id' => $course,
             'year_of_intake_id'   => $year,
             'month_of_intake_id'  => $month,
-            'class_division_id'  => $group
+            'class_division_id'  => $group,
         ]);
     }
 
     /**
-     * Check if a class exists and return it
-     * @param $campus
+     *  Check if a class exists and return it
      * @param $course
-     * @param $year
-     * @param $month
-     * @param $group
-     * @return bool
+     * @return null
      */
-    public function checkIfExists($campus, $course, $year, $month, $group){
+    public function checkIfExists($course){
 
-        if($this->model->where('campus_id', $campus)
-                       ->where('course_id', $course)
-                       ->where('year_of_intake_id', $year)
-                       ->where('month_of_intake_id', $month)
-                       ->where('class_division_id', $group)->exists()
+        if($this->model
+                ->where('course_id', $course)
+                ->exists()
         ){
 
-            return $this->model->where('campus_id', $campus)
-                ->where('course_id', $course)
-                ->where('year_of_intake_id', $year)
-                ->where('month_of_intake_id', $month)
-                ->where('class_division_id', $group)->first();
+            return $this->model
+                        ->where('course_id', $course)
+                        ->first();
         }
 
         return null;
     }
 
     /**
-     * Add a user to a particular class
      * @param $class
+     * @return bool
      */
     public function addMember($class){
 
         if($class->members()->create([
-            'user_id' => \Auth::user()->id
+            'user_id' => \Auth::user()->id,
         ])){
 
             return true;

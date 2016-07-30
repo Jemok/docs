@@ -20,5 +20,35 @@ class CoursesTableSeeder extends Seeder
            'course_name' => 'Bachelor of Business and Information Technology',
             'user_id'    => $user->id
         ]);
+
+        $campus->course()->create([
+            'course_name' => 'Medicine',
+            'user_id'    => $user->id
+        ]);
+
+        $campus->course()->create([
+            'course_name' => 'Financial Engineering',
+            'user_id'    => $user->id
+        ]);
+
+        $campus->course()->create([
+            'course_name' => 'Actuarial science',
+            'user_id'    => $user->id
+        ]);
+
+        $campus->course()->create([
+            'course_name' => 'Human Resource',
+            'user_id'    => $user->id
+        ]);
+
+        $campus->course()->create([
+            'course_name' => 'Food Science',
+            'user_id'    => $user->id
+        ]);
+
+        $campus->course()->create([
+            'course_name' => 'Computer Science',
+            'user_id'    => $user->id
+        ]);
     }
 }

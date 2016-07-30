@@ -36,12 +36,17 @@
                                     </div>
                                 </form>
 
+                                @if($members->count())
                                 <tbody>
-
+                                @foreach($members as $member)
                                 <tr>
-                                    <td>Reuben njuguna</td>
+                                    <td>{{ $member->user->name }}</td>
                                 </tr>
+                                @endforeach
                                 </tbody>
+                                @else
+                                    No members in this class
+                                @endif
                             </table>
                         </div>
                     </div>
