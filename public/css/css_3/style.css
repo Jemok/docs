@@ -18,9 +18,9 @@
 {
     padding-top:5px;
     background-color: white;
-    height: 520px;
+    height: 562px;
 }
-.panel-height
+.panel-body-height
 {
     height: 520px;
     overflow: auto;
@@ -32,18 +32,18 @@
 
 .changethisone span
 {
-    background-color: #FFF;
+    background-color: #FFFFFF;
 }
 
 .changethisone input
 {
     border-right-style:none;
 }
-.left-panel-height
+.panel-left
 {
     height: 562px;
 }
-.right-panel-height
+.panel-right
 {
     height: 562px;
 }
@@ -55,4 +55,19 @@
 .panel-search-result
 {
     height:562px;
+}
+.table-results
+{
+    padding-top: 10px;
+}
+.panel-lecturer
+{
+    border-left:outset 5px;
+    border-radius:0px ;
+}
+.panel-lecturer-body
+{
+    background-color: #FFFFFF;
+    height: 452px;
+    overflow: auto;
 }

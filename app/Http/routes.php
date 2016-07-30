@@ -57,3 +57,11 @@ Route::post('files/{receiver}', ['as' => 'shareFileToUser', 'uses' => 'FilesCont
  * ---------------------------------------------------------------------------------------------------------------------/
  */
 Route::get('search', ['as' => 'search', 'uses' => 'SearchController@search']);
+
+/**
+ * Group Routes
+ * ---------------------------------------------------------------------------------------------------------------------/
+ */
+Route::get('members', ['as' => 'allMembers', 'uses' => 'GroupController@getMembers']);
+
+Route::get('show', ['as' => 'showGroup', 'uses' => 'GroupController@showGroup']);
