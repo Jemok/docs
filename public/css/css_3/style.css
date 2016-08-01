@@ -95,6 +95,7 @@
 
     color: red;
 }
+
 .image-size
 {
     height: 50px;
@@ -128,6 +129,15 @@
     color: #0288d1;
 }
 
+.glyphicon-members
+{
+    font-size:10px;
+    color:#0288d1 ;
+}
+.text-info-size
+{
+    font-size: 11px;
+}
 /*.index-image*/
 /*{*/
     /*height: 500px;*/
