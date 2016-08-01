@@ -6,7 +6,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="gridSystemModalLabel">Modal title</h4>
+                <h4 class="modal-title" id="gridSystemModalLabel">Upload File</h4>
             </div>
 
                 <form class="form-horizontal" method="post" action="{{ route('storeFile') }}" enctype="multipart/form-data">
