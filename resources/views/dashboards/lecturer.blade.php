@@ -31,7 +31,7 @@
 
                                 <table class="table">
                                     <thead>
-                                    <td><strong>Favorites</strong></td>
+                                    <td><strong>Groups</strong></td>
                                     </thead>
                                     @if($lecturer_groups->count())
                                     <tbody>
@@ -45,7 +45,7 @@
 
                                     </tbody>
                                     @else
-                                     You have no favorites
+                                     You have no groups
                                     @endif
                                     <tr>
                                         <td>
@@ -77,7 +77,7 @@
 
                 @include('flash.flash_message')
                             <div class="panel">
-                                <div class="panel-heading">Sent Files</div>
+                                <div class="panel-heading">Shared Files</div>
                                     <div class="panel-body panel-border">
                                         @if($lecturer_files->count())
                                             <table class="table table-responsive">
@@ -134,12 +134,8 @@
                                                 </tbody>
                                             </table>
                                         @else
-                                            @if(\Auth::user()->login()->first()->status == 0)
-                                                <p class="col-md-12"><span class="glyphicon glyphicon-check" aria-hidden="true"></span>&nbsp;You have been automatically placed to a class group.</p>
-                                                <p class="col-md-12"><span class="glyphicon glyphicon-check" aria-hidden="true"></span>&nbsp;Now you can share files to individual students.</p>
-                                                <p class="col-md-12"><span class="glyphicon glyphicon-check" aria-hidden="true"></span>&nbsp;You can also share files to the entire group.</p>
-                                            @endif
-                                            No files shared to this group
+
+                                            You haven't shared any files
                                         @endif
                                     </div>
                                 </div>

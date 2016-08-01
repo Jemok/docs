@@ -74,9 +74,9 @@
                                     <form method="post" action="{{ route('lecturerFavorite', [$group->id]) }}">
                                         {{ csrf_field() }}
                                         @if($favorite == 0)
-                                        <button type="submit" class="btn btn-primary">Favorite</button>
+                                        <button type="submit" class="btn btn-primary">Add group</button>
                                         @else
-                                            <button type="button" class="btn btn-primary disabled">Already a favorite</button>
+                                            <button type="button" class="btn btn-primary disabled">Already in your group</button>
                                         @endif
                                     </form>
                                 </td>
