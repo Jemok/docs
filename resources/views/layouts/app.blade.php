@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Laravel</title>
+    <title>Docs</title>
 
     <!-- Fonts -->
     <link href="{{ asset('css/bootstrap_fonts') }}" type="text/css" rel="stylesheet">
