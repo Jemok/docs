@@ -26,10 +26,10 @@
     </style>
 </head>
 <body id="app-layout">
-    @if(\Auth::guest())
-    <nav class="navbar navbar-static-top">
-        <div class="container">
-            <div class="navbar-head">
+    {{--@if(\Auth::guest())--}}
+    {{--<nav class="navbar navbar-static-top">--}}
+        {{--<div class="container">--}}
+            {{--<div class="navbar-head">--}}
 
                 {{--<!-- Collapsed Hamburger -->--}}
                 {{--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">--}}
@@ -39,49 +39,49 @@
                     {{--<span class="icon-bar"></span>--}}
                 {{--</button>--}}
 
-                <!-- Branding Image -->
-                <a class="navbar-brand" href="{{ url('/') }}">
-                        <strong>Docs</strong>
-                </a>
-            </div>
+                {{--<!-- Branding Image -->--}}
+                {{--<a class="navbar-brand" href="{{ url('/') }}">--}}
+                        {{--<strong>Docs</strong>--}}
+                {{--</a>--}}
+            {{--</div>--}}
 
-            <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                <!-- Left Side Of Navbar -->
-                <ul class="nav navbar-nav">
-                    <li><a href="{{ url('/home') }}"></a></li>
-                </ul>
+            {{--<div class="collapse navbar-collapse" id="app-navbar-collapse">--}}
+                {{--<!-- Left Side Of Navbar -->--}}
+                {{--<ul class="nav navbar-nav">--}}
+                    {{--<li><a href="{{ url('/home') }}"></a></li>--}}
+                {{--</ul>--}}
 
 
-                <!-- Right Side Of Navbar -->
-                <ul class="nav navbar-nav navbar-right">
-                    <!-- Authentication Links -->
-                    @if (Auth::guest())
-                        <li><a href="{{ url('/login') }}">Login</a></li>
+                {{--<!-- Right Side Of Navbar -->--}}
+                {{--<ul class="nav navbar-nav navbar-right">--}}
+                    {{--<!-- Authentication Links -->--}}
+                    {{--@if (Auth::guest())--}}
+                        {{--<li><a href="{{ url('/login') }}">Login</a></li>--}}
 
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role ="button" aria-expanded="false">Register</a>
+                        {{--<li class="dropdown">--}}
+                            {{--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role ="button" aria-expanded="false">Register</a>--}}
 
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ url('/register') }}"><i class="fa fa-btn fa-sign-out"></i>Register student</a></li>
-                                <li><a href="{{ route('createLecturer') }}"><i class="fa fa-btn fa-sign-out"></i>Register lecturer</a></li>
-                            </ul>
-                        </li>
-                    @else
-                        <li>
+                            {{--<ul class="dropdown-menu" role="menu">--}}
+                                {{--<li><a href="{{ url('/register') }}"><i class="fa fa-btn fa-sign-out"></i>Register student</a></li>--}}
+                                {{--<li><a href="{{ route('createLecturer') }}"><i class="fa fa-btn fa-sign-out"></i>Register lecturer</a></li>--}}
+                            {{--</ul>--}}
+                        {{--</li>--}}
+                    {{--@else--}}
+                        {{--<li>--}}
                             {{--<a>--}}
                                 {{--{{ Auth::user()->name }}--}}
                             {{--</a>--}}
-                        </li>
+                        {{--</li>--}}
                         {{--<li>--}}
                             {{--<a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a>--}}
                         {{--</li>--}}
 
-                    @endif
-                </ul>
-            </div>
-        </div>
-    </nav>
-    @endif
+                    {{--@endif--}}
+                {{--</ul>--}}
+            {{--</div>--}}
+        {{--</div>--}}
+    {{--</nav>--}}
+    {{--@endif--}}
     @yield('content')
 
     <!-- JavaScripts -->

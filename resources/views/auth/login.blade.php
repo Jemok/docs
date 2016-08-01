@@ -2,10 +2,17 @@
 
 @section('content')
 <div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-border">
-                <div class="panel-heading">Login</div>
+    <div class="row flash-padding">
+
+        <div class="col-md-5">
+            <a href="{{url('/')}}"><strong><span class="glyphicon glyphicon-chevron-left">Home</strong></a>
+            <h4><strong>Login in order to share files</strong></h4>
+            <span class="glyphicon glyphicon-folder-open glyphicon-login"></span>
+        </div>
+
+        <div class="col-md-5 panel-border">
+            <div class="panel ">
+                <div class="panel-heading"><strong><u>Login</u></strong></div>
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
                         {{ csrf_field() }}
@@ -61,6 +68,7 @@
                 </div>
             </div>
         </div>
+
     </div>
 </div>
 @endsection

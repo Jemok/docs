@@ -96,10 +96,39 @@
     color: red;
 }
 
-.group-name{
-
-    font-size: medium;
+.image-size
+{
+    height: 50px;
 }
+.image-padding
+{
+    padding-bottom: 8px;
+}
+.image-padding-bottom
+{
+    padding-top: 5px;
+}
+.container-image
+{
+    height: 652px;
+}
+.col-file-sharing
+{
+    padding-top: 35px;
+    color:#000000 ;
+    font-weight: bold;
+    background-color: #FFFFFF;
+}
+.row-buttons
+{
+    padding-top: 100px;
+}
+.glyphicon-login
+{
+    font-size: 300px;
+    color: #0288d1;
+}
+
 .glyphicon-members
 {
     font-size:10px;
