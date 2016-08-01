@@ -71,3 +71,9 @@
     height: 452px;
     overflow: auto;
 }
+.index-image
+{
+    height: 500px;
+    padding-right: 10px;
+    float: inherit;
+}
