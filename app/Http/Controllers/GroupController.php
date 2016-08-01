@@ -41,7 +41,7 @@ class GroupController extends Controller
 
         $classRepository->addMember($group, 1);
 
-        Session::flash('flash_message', 'Group was added to your favorites');
+        Session::flash('flash_message', 'Group was added to your groups');
 
         return redirect('home');
     }
