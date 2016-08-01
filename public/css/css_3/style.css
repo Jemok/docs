@@ -76,7 +76,6 @@
     height: 452px;
     overflow: auto;
 }
-
 .font-size{
 
     font-size: 11px;
@@ -96,4 +95,9 @@
 
     color: red;
 
-}
+/*.index-image*/
+/*{*/
+    /*height: 500px;*/
+    /*padding-right: 10px;*/
+    /*float: inherit;*/
+/*}*/
