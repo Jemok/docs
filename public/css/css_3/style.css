@@ -91,10 +91,24 @@
     padding-top: 20px;
 }
 
-.new-file{
+.new-file {
 
     color: red;
+}
 
+.group-name{
+
+    font-size: medium;
+}
+.glyphicon-members
+{
+    font-size:10px;
+    color:#0288d1 ;
+}
+.text-info-size
+{
+    font-size: 11px;
+}
 /*.index-image*/
 /*{*/
     /*height: 500px;*/

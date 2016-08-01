@@ -60,14 +60,14 @@
                                             @if($members->count())
                                             <table class="table table-results">
                                                 <thead>
-                                                <td>Name</td>
-                                                <td>E-mail</td>
-                                                <td>Membership</td>
+                                                <td><strong>Name</strong></td>
+                                                <td><strong>E-mail</strong></td>
+                                                <td><strong>Membership</strong></td>
                                                 </thead>
                                                 <tbody>
                                                 @foreach($members as $member)
                                                 <tr>
-                                                    <td>{{ $member->user->name }}@if($member->user->id == \Auth::user()->id)( Me )@endif</td>
+                                                    <td><span class="glyphicon glyphicon-user glyphicon-members"></span> {{ $member->user->name }}@if($member->user->id == \Auth::user()->id)( Me )@endif</td>
                                                     <td>{{ $member->user->email }}</td>
                                                     <td>
                                                         @if($member->member_type == 1)  Lecturer @endif

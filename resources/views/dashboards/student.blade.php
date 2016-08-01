@@ -45,8 +45,8 @@
                                 @foreach($members as $member)
                                 <tr>
                                     <td>
-                                        {{ $member->user->name }}@if($member->user->id == \Auth::user()->id) <span class="text-info">( Me )</span> @endif
-                                        @if($member->member_type == 1) <span class="text-info">( Lecturer )</span> @endif
+                                        <span class="glyphicon glyphicon-user glyphicon-members"></span> {{ $member->user->name }}@if($member->user->id == \Auth::user()->id) <span class="text-info text-info-size">( Me )</span> @endif
+                                        @if($member->member_type == 1) <span class="text-info text-info-size">( Lecturer )</span> @endif
                                     </td>
                                 </tr>
                                 @endforeach
@@ -88,7 +88,7 @@
                     <a class="navbar-brand" href="{{ url('/') }}">
                         <strong>
                             @if(isset($class_name))
-                                {{ $class_name }} | Code: {{ $class_code }} <span class="font-size">For lecturer use only</span>
+                               <span class="group-name"> {{ $class_name }} </span> | Code: {{ $class_code }} <span class="font-size">For lecturer use only</span>
                             @endif
                         </strong>
                     </a>

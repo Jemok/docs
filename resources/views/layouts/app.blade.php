@@ -16,7 +16,7 @@
 
     <style>
         body {
-            font-family: 'Lato';
+            font-family: 'Arial';
             color: #000000;
         }
 
