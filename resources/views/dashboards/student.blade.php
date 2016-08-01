@@ -12,7 +12,7 @@
                     <div class="panel-body">
 
                         <a class="col-md-offset-3">
-                            {{ Auth::user()->name }}
+                            <span class="glyphicon glyphicon-user"> {{ Auth::user()->name }}</span>
                         </a>
                         <h5 style="text-align: center;"><u><strong>Upload file to a group</strong></u></h5>
                         <p style="text-align: center;">
@@ -69,7 +69,7 @@
             </div>{{--end of left panel--}}
 
             {{--right panel--}}
-            <div class="col-md-9">
+            <div class="col-md-9 flash-padding">
 
                 @if($errors->count())
                 <div class="alert alert-warning alert-dismissible" role="alert">
@@ -78,7 +78,6 @@
                     <a data-toggle="modal" data-target=".upload_file_to_group">
                         Try again
                     </a>
-
                 </div>
                 @endif
 
