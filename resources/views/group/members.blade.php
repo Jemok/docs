@@ -48,7 +48,7 @@
 
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs" role="tablist">
-                                <li role="presentation" class="active col-md-6 text-center"><a href="#group-members" aria-controls="group-members" role="tab" data-toggle="tab">Group Members<span class="badge">{{$members->count()}}</span></a></li>
+                                <li role="presentation" class="active col-md-12 text-center"><a href="#group-members" aria-controls="group-members" role="tab" data-toggle="tab">Group Members<span class="badge">{{$members->count()}}</span></a></li>
                             </ul>
 
                             <!-- Tab panes -->
@@ -56,7 +56,7 @@
                                 <div role="tabpanel" class="tab-pane tab-space active col-md-12" id="group-members">
 
                                     <div class="row">
-                                        <div class=" col-md-offset-1 col-md-6">
+                                        <div class=" col-md-offset-1 col-md-9">
                                             @if($members->count())
                                             <table class="table table-results">
                                                 <thead>
