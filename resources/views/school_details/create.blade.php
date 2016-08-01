@@ -2,10 +2,30 @@
 @section('content')
     <div class="container">
 
-        <div class="row">
+        <div class="row flash-padding">
+
+            <div class="col-md-5">
+                <a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a>
+                <h4><strong> You can share the following type of files</strong></h4>
+                <div class="flash-padding">
+                    <div class="row col-md-3">
+                        <img src="{{asset('icons/pdf.jpg')}}" alt="pdf">
+                    </div>
+                    <div class="row col-md-3">
+                        <img src="{{asset('icons/ppt.png')}}">
+                    </div>
+
+                    <div class="row col-md-3">
+                        <img src="{{asset('icons/writer.png')}}" alt="writer">
+                    </div>
+                    <div class="row col-md-3">
+                        <img src="{{asset('icons/word.jpg')}}" alt="writer">
+                    </div>
+                </div>
+            </div>
 
             <div class="col-md-4">
-                <div class="panel panel-default ">
+                <div class="panel panel-border ">
                     <div class="panel-body">
                         <h5 style="text-align: center;"><strong><u>Select year to join a group</u></strong></h5>
                         <form class="form-horizontal" method="post" action="{{ route('storeUserSchoolDetails') }}">

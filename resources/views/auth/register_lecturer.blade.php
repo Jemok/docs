@@ -2,9 +2,14 @@
 @section('content')
     <div class="container">
 
-        <div class="row">
+        <div class="row flash-padding">
+            <div class="col-md-5">
+                <a href="{{url('/')}}"><strong><span class="glyphicon glyphicon-chevron-left"></span>Home</strong></a>
+                <h4><strong>Register in order to share files to groups.</strong></h4>
+                <span class="glyphicon glyphicon-user glyphicon-login"></span>
+            </div>
 
-            <div class="col-md-8 col-md-offset-2">
+            <div class="col-md-5 ">
                 <div class="panel panel-border">
                     <div class="panel-heading"><h5><strong>Register as a Lecturer </strong></h5></div>
                     <div class="panel-body">
