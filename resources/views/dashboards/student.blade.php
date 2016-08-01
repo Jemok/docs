@@ -8,9 +8,12 @@
 
             {{--left panel--}}
             <div class="col-md-3">
-                <div class="panel panel-default">
+                <div class="panel">
                     <div class="panel-body">
 
+                        <a class="col-md-offset-3">
+                            {{ Auth::user()->name }}
+                        </a>
                         <h5 style="text-align: center;"><u><strong>Upload file to a group</strong></u></h5>
                         <p style="text-align: center;">
                             <!-- Button trigger modal -->
@@ -41,16 +44,24 @@
 
                                 @foreach($members as $member)
                                 <tr>
-                                    <td>{{ $member->user->name }}</td>
                                     <td>
-                                        <a href="{{ route('allMembers')  }}">More Group members&nbsp;<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+                                        {{ $member->user->name }}@if($member->user->id == \Auth::user()->id) <span class="text-info">( Me )</span> @endif
+                                        @if($member->member_type == 1) <span class="text-info">( Lecturer )</span> @endif
                                     </td>
                                 </tr>
                                 @endforeach
+                                <td>
+                                    <a href="{{ route('allMembers')  }}">More Group members&nbsp;<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+                                </td>
                                 </tbody>
                                 @else
                                     No members in this class
                                 @endif
+                                <tr>
+                                    <td>
+                                        <a href="{{ url('/logout') }}" class="col-md-offset-5"><i class="fa fa-btn fa-sign-out"></i>Logout</a>
+                                    </td>
+                                </tr>
                             </table>
                         </div>
                     </div>
@@ -73,54 +84,216 @@
 
                 @include('flash.flash_message')
 
-                <div class="panel panel-default">
-                    <div class="panel-heading"><strong>Student Dashboard</strong></div>
-
+                <div class="row">
+                    <a class="navbar-brand" href="{{ url('/') }}">
+                        <strong>
+                            @if(isset($class_name))
+                                {{ $class_name }} | Code: {{ $class_code }} <span class="font-size">For lecturer use only</span>
+                            @endif
+                        </strong>
+                    </a>
+                </div>
+                <div class="panel panel-border">
                     <div class="panel-body panel-height" >
 
+                        <?php
+
+                        $value = \Illuminate\Support\Facades\Request::get('individual_files_page')
+
+                        ?>
                         <div class="row">
 
                                 <!-- Nav tabs -->
                                 <ul class="nav nav-tabs" role="tablist">
-                                    <li role="presentation" class="active col-md-6 text-center"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Group activities<span class="badge">4</span></a></li>
-                                    <li role="presentation" class="col-md-6 text-center"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Individual activities <span class="badge">4</span></a></li>
+                                    <li role="presentation" class="
+
+                                    @if($value == null)
+                                            active
+                                    @else
+                                    @endif
+
+
+
+                                     col-md-6 text-center"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Group Files<span class="badge">{{ $new_group_files_count }}</span></a></li>
+                                    <li role="presentation" class="
+
+                                     @if($value != null)
+                                            active
+                                    @else
+                                    @endif
+
+                                            col-md-6
+                                             text-center"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Individual Files <span class="badge">{{ $new_inbox_files_count }}</span></a></li>
                                 </ul>
 
                                 <!-- Tab panes -->
                                 <div class="tab-content tab-header">
-                                    <div role="tabpanel" class="tab-pane tab-space active col-md-12" id="home">
+                                    <div role="tabpanel" class="tab-space tab-pane col-md-12
+                                     @if($value == null)
+                                            active
+                                    @else
+                                    @endif
 
-                                        @if(\Auth::user()->login()->first()->status == 0)
-                                            <p class="col-md-12"><span class="glyphicon glyphicon-check" aria-hidden="true"></span>&nbsp;You have been automatically placed to a class group.</p>
-                                            <p class="col-md-12"><span class="glyphicon glyphicon-check" aria-hidden="true"></span>&nbsp;Now you can share files to individual students.</p>
-                                            <p class="col-md-12"><span class="glyphicon glyphicon-check" aria-hidden="true"></span>&nbsp;You can also share files to the entire group.</p>
-                                        @endif
+                                    " id="home">
 
-                                        <table class="table">
+
+                                        @if($group_files->count())
+                                        <table class="table table-responsive">
                                             <thead>
-                                            <td>icon and filename | title</td>
                                             </thead>
                                             <tbody>
+                                            @foreach($group_files as $group_file)
+                                            <tr class="@if($group_file->updated_at > $last_login) bg-info @endif">
+                                                <td>
+                                                    <div class="col-md-2">
+                                                    @if($group_file->user_id == \Auth::user()->id)
+                                                        <span class="glyphicon glyphicon-arrow-up font-size"></span>
+                                                    @else
+                                                        <span class="glyphicon glyphicon-arrow-down font-size"></span>
+                                                    @endif
+
+                                                    @if($group_file->file->extension == 'docx')
+                                                        <img src="{{ asset('icons/word.jpg') }}" height="50px">
+                                                    @endif
+
+                                                    @if($group_file->file->extension == 'pdf')
+                                                            <img src="{{ asset('icons/pdf1.png') }}" height="50px">
+                                                    @endif
+
+                                                        @if($group_file->file->extension == 'odt')
+                                                            <img src="{{ asset('icons/writer.png') }}" height="50px">
+                                                        @endif
+
+                                                        @if($group_file->file->extension == 'ppt')
+                                                            <img src="{{ asset('icons/ppt.png') }}" height="50px">
+                                                        @endif
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        @if($group_file->user_id == \Auth::user()->id)
+                                                            <div>
+                                                            <span class="font-size">Me . {{ $group_file->created_at->diffForHumans() }}. @if($group_file->updated_at > $last_login) <span class="new-file">New </span> @endif</span>
+                                                            </div>
+                                                        @else
+                                                            <div>
+                                                            <span class="font-size"> {{ $group_file->user->name }} . {{ $group_file->created_at->diffForHumans() }}. @if($group_file->updated_at > $last_login) <span class="new-file">New </span> @endif </span>
+                                                            </div>
+                                                        @endif
+                                                            <div>
+                                                                <span class="font-bold">({{ $group_file->file->file_name }} | {{ $group_file->file->title }} )</span>
+                                                            </div>
+                                                            <div>
+                                                                {{ $group_file->file->description }}
+                                                            </div>
+                                                    </div>
+                                                </td>
+                                                <td><a href="{{ asset('uploads/'. $group_file->file->file_name) }}" class="btn btn-primary btn-sm">Download <span class="glyphicon glyphicon-download-alt"></span></a>
+                                                </td>
+                                            </tr>
+                                            @endforeach
                                             <tr>
-                                                <td>description | <button class="btn btn-primary btn-sm">Download <span class="glyphicon glyphicon-download-alt"></span></button> </td>
+                                                <td>
+                                                    <div class="col-md-offset-7">{{ $group_files->links() }}</div>
+                                                </td>
                                             </tr>
                                             </tbody>
                                         </table>
 
+                                            @else
+                                            @if(\Auth::user()->login()->first()->status == 0)
+                                                <p class="col-md-12"><span class="glyphicon glyphicon-check" aria-hidden="true"></span>&nbsp;You have been automatically placed to a class group.</p>
+                                                <p class="col-md-12"><span class="glyphicon glyphicon-check" aria-hidden="true"></span>&nbsp;Now you can share files to individual students.</p>
+                                                <p class="col-md-12"><span class="glyphicon glyphicon-check" aria-hidden="true"></span>&nbsp;You can also share files to the entire group.</p>
+                                            @endif
+                                            No files shared to this group
+                                        @endif
 
                                     </div>
-                                    <div role="tabpanel" class="tab-pane tab-space col-md-12" id="settings">
+                                    <div role="tabpanel" class="tab-space tab-pane col-md-12
 
-                                        @if(\Auth::user()->login()->first()->status == 0)
-                                        <p class="col-md-12"><span class="glyphicon glyphicon-check" aria-hidden="true"></span>&nbsp;You have been automatically placed to a class group.</p>
-                                        <p class="col-md-12"><span class="glyphicon glyphicon-check" aria-hidden="true"></span>&nbsp;Now you can share files to individual students.</p>
-                                        <p class="col-md-12"><span class="glyphicon glyphicon-check" aria-hidden="true"></span>&nbsp;You can also share files to the entire group.</p>
+                                        @if($value != null)
+                                            active
+                                        @else
+                                        @endif
+
+                                       " id="settings">
+                                        @if($inbox_files->count())
+                                            <table class="table table-responsive">
+                                                <thead>
+                                                </thead>
+                                                <tbody>
+                                                @foreach($inbox_files as $inbox_file)
+                                                    <tr class="@if($inbox_file->updated_at > $last_login) bg-info @endif">
+                                                        <td>
+                                                            <div class="col-md-2">
+                                                                @if($inbox_file->user_id == \Auth::user()->id)
+                                                                    <span class="glyphicon glyphicon-arrow-up font-size"></span>
+                                                                @else
+                                                                    <span class="glyphicon glyphicon-arrow-down font-size"></span>
+                                                                @endif
+
+                                                                @if($inbox_file->file->extension == 'docx')
+                                                                    <img src="{{ asset('icons/word.jpg') }}" height="50px">
+                                                                @endif
+
+                                                                @if($inbox_file->file->extension == 'pdf')
+                                                                    <img src="{{ asset('icons/pdf1.png') }}" height="50px">
+                                                                @endif
+
+                                                                @if($inbox_file->file->extension == 'odt')
+                                                                    <img src="{{ asset('icons/writer.png') }}" height="50px">
+                                                                @endif
+
+                                                                @if($inbox_file->file->extension == 'ppt')
+                                                                    <img src="{{ asset('icons/ppt.png') }}" height="50px">
+                                                                @endif
+                                                            </div>
+                                                            <div class="col-md-8">
+                                                                @if($inbox_file->user_id == \Auth::user()->id)
+                                                                    <div>
+                                                                        <span class="font-size">@if($inbox_file->receiver == \Auth::user()->id) MyFile @else to {{ $inbox_file->file_receiver->name }} @endif . {{$inbox_file->created_at->diffForHumans()}}. @if($inbox_file->updated_at > $last_login) <span class="new-file">New </span> @endif</span>
+                                                                    </div>
+                                                                    <div>
+                                                                        <span class="font-bold">({{ $inbox_file->file->file_name }} | {{ $inbox_file->file->title }} )</span>
+                                                                    </div>
+                                                                    <div>
+                                                                        {{ $inbox_file->file->description }}
+                                                                    </div>
+                                                                @else
+                                                                    <div>
+                                                                        <span class="font-size">from {{ $inbox_file->user->name }} . {{$inbox_file->created_at->diffForHumans()}}. @if($inbox_file->updated_at > $last_login) <span class="new-file">New </span> @endif</span>
+                                                                    </div>
+                                                                    <div>
+                                                                        <span class="font-bold">({{ $inbox_file->file->file_name }} | {{ $inbox_file->file->title }} )</span>
+                                                                    </div>
+                                                                    <div>
+                                                                        {{ $inbox_file->file->description }}
+                                                                    </div>
+                                                                @endif
+                                                            </div>
+                                                        </td>
+                                                        <td><a href="{{ asset('uploads/'. $inbox_file->file->file_name) }}" class="btn btn-primary btn-sm">Download <span class="glyphicon glyphicon-download-alt"></span></a>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                                <tr>
+                                                    <td>
+                                                        <div class="col-md-offset-7">{{ $inbox_files->links() }}</div>
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+
+                                        @else
+                                            @if(\Auth::user()->login()->first()->status == 0)
+                                                <p class="col-md-12"><span class="glyphicon glyphicon-check" aria-hidden="true"></span>&nbsp;You have been automatically placed to a class group.</p>
+                                                <p class="col-md-12"><span class="glyphicon glyphicon-check" aria-hidden="true"></span>&nbsp;Now you can share files to individual students.</p>
+                                                <p class="col-md-12"><span class="glyphicon glyphicon-check" aria-hidden="true"></span>&nbsp;You can also share files to the entire group.</p>
+                                            @endif
+                                            No files shared to this group
                                         @endif
 
                                     </div>
                                 </div>
-
-
                         </div>
                     </div>
                 </div>

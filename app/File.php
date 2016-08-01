@@ -23,4 +23,12 @@ class File extends Model
         'extension',
         'share_type'
     ];
+
+    /**
+     * File Shared_file Relationship
+     */
+    public function shared(){
+
+        $this->hasMany(Shared_file::class);
+    }
 }

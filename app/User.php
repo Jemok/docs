@@ -154,4 +154,24 @@ class User extends Authenticatable
 
         return $this->hasMany(Shared_file::class);
     }
+
+    /**
+     * User Received files in Shared_files Relationship
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function received_files(){
+
+        return $this->hasMany(Shared_file::class);
+    }
+
+    /**
+     * User LecturerFavorite Relationship
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function favorite(){
+
+        return $this->hasMany(LecturerFavorite::class);
+    }
+
+
 }

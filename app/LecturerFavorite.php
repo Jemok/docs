@@ -4,51 +4,37 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Shared_file extends Model
+class LecturerFavorite extends Model
 {
     /**
-     * The table used by thsi model
+     * The table used by this model
      * @var string
      */
-    protected $table = 'shared_files';
+    protected $table = 'lecturer_favorites';
 
     /**
      * Fields that can be mass assigned
      * @var array
      */
     protected $fillable = [
-        'receiver',
-        'share_type',
-        'file_id'
+
+        'status',
+        'group_id'
     ];
 
     /**
-     * Shared_file User Relationship
+     * LecturerFavorite User Relationship
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function user(){
-
         return $this->belongsTo(User::class);
     }
 
-
     /**
-     * Shared_file File Relationship
+     * LecturerFavorite Group Relationship
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function file(){
-
-        return $this->belongsTo(File::class);
-    }
-
     public function group(){
-
-        return $this->belongsTo(Group::class, 'receiver');
+        return $this->belongsTo(Group::class);
     }
-
-    public function file_receiver(){
-
-        return $this->belongsTo(User::class, 'receiver');
-    }
-
 }

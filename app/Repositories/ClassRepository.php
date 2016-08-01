@@ -9,6 +9,7 @@
 namespace App\Repositories;
 
 
+use App\Class_member;
 use App\Group;
 use App\UserIntake;
 
@@ -22,6 +23,7 @@ class ClassRepository
 
     /**
      * ClassRepository constructor.
+     * @param Group $group
      */
     public function __construct(Group $group)
     {
@@ -36,18 +38,23 @@ class ClassRepository
             'year_of_intake_id'   => $year,
             'month_of_intake_id'  => $month,
             'class_division_id'  => $group,
+            'group_code'         => rand(11111,99999)
         ]);
     }
 
     /**
-     *  Check if a class exists and return it
+     * Check if a class exists and return it
      * @param $course
+     * @param $year
+     * @param $month
      * @return null
      */
-    public function checkIfExists($course){
+    public function checkIfExists($course, $year, $month){
 
         if($this->model
                 ->where('course_id', $course)
+                ->where('year_of_intake_id', $year)
+                ->where('month_of_intake_id', $month)
                 ->exists()
         ){
 
@@ -61,12 +68,14 @@ class ClassRepository
 
     /**
      * @param $class
+     * @param $member_type
      * @return bool
      */
-    public function addMember($class){
+    public function addMember($class, $member_type){
 
         if($class->members()->create([
             'user_id' => \Auth::user()->id,
+            'member_type' => $member_type
         ])){
 
             return true;
@@ -89,7 +98,7 @@ class ClassRepository
 
     public function getLecturerClasses($user_id){
 
-        return ClassMembers::where('member_type', 1)
+        return Class_member::where('member_type', 1)
                             ->where('user_id', $user_id)->lists('group_id');
     }
 

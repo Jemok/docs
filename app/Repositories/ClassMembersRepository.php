@@ -37,4 +37,14 @@ class ClassMembersRepository
 
         return $this->model->where('group_id', $class_id)->with('user')->take(8)->get();
     }
+
+    /**
+     * Get all the members of a particular group
+     * @param $class_id
+     * @return mixed
+     */
+    public function getAllClassMembers($class_id){
+
+        return $this->model->where('group_id', $class_id)->with('user')->latest()->paginate(10);
+    }
 }

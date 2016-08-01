@@ -5,11 +5,15 @@
 
         <div class="row">
                 {{--left panel--}}
-            <div class="col-md-3">
-                <div class="panel panel-default panel-search-result">
+            <div class="col-md-3 flash-padding">
+                <div class="panel">
                     <div class="panel-body">
 
+                        <a class="col-md-offset-3">
+                            {{ Auth::user()->name }}
+                        </a>
                         {{--search form--}}
+                        <div class="flash-padding">
                         <form class="form-horizontal" method="get" action="{{ route('search') }}">
                             <div class="input-group changethisone col-md-12">
                                         <span class="input-group-addon" type="submit">
@@ -19,12 +23,21 @@
                                 <input type="text" name="search" class="form-control" placeholder="Search a person">
                             </div>
                         </form>
+                        </div>
+                        <div class="flash-padding">
+                            <a class="col-md-offset-3">
+                                <a href="{{ url('/home') }}">Back Home</a>
+                            </a>
+                        </div>
+                        <div class="flash-padding">
+                        <a href="{{ url('/logout') }}" class="col-md-offset-3"><i class="fa fa-btn fa-sign-out"></i>Logout</a>
+                        </div>
                     </div>
                 </div>
             </div>{{--end left panel--}}
 
                 {{--right panel--}}
-            <div class="col-md-9">
+            <div class="col-md-9 flash-padding">
                 @include('flash.flash_message')
 
                 @if($errors->count())
@@ -34,7 +47,7 @@
                 </div>
                 @endif
 
-                <div class="panel panel-default panel-search-result">
+                <div class="panel panel-border">
                     <div class="panel-body">
 
                         <div class="col-md-12">

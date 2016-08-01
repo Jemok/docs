@@ -51,12 +51,16 @@ Route::post('/user/schools', ['as' => 'storeUserSchoolDetails', 'uses' => 'UserS
  */
 Route::post('files', ['as' => 'storeFile', 'uses' => 'FilesController@store']);
 Route::post('files/{receiver}', ['as' => 'shareFileToUser', 'uses' => 'FilesController@shareToUser']);
+Route::post('files/lecturer/{group_id}', ['as' => 'lecturerShare', 'uses' => 'FilesController@storeForLec']);
+
+
 
 /**
  * Search files routes
  * ---------------------------------------------------------------------------------------------------------------------/
  */
 Route::get('search', ['as' => 'search', 'uses' => 'SearchController@search']);
+Route::get('search/lecturer', ['as' => 'searchGroup', 'uses' => 'SearchController@searchGroup']);
 
 /**
  * Group Routes
@@ -64,4 +68,11 @@ Route::get('search', ['as' => 'search', 'uses' => 'SearchController@search']);
  */
 Route::get('members', ['as' => 'allMembers', 'uses' => 'GroupController@getMembers']);
 
-Route::get('show', ['as' => 'showGroup', 'uses' => 'GroupController@showGroup']);
+Route::get('show/{group_id}/{group_name}/{group_code}', ['as' => 'showGroup', 'uses' => 'GroupController@showGroup']);
+
+/**
+ * Lecturer Favorites route
+ * ---------------------------------------------------------------------------------------------------------------------/
+ */
+
+Route::post('lecturer/favorite/{group_id}', ['as' => 'lecturerFavorite', 'uses' => 'GroupController@addLecturerFavorite']);

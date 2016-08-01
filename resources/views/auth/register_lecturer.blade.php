@@ -5,8 +5,8 @@
         <div class="row">
 
             <div class="col-md-8 col-md-offset-2">
-                <div class="panel panel-default ">
-                    <div class="panel-heading"><h5><strong>Register </strong></h5></div>
+                <div class="panel panel-border">
+                    <div class="panel-heading"><h5><strong>Register as a Lecturer </strong></h5></div>
                     <div class="panel-body">
 
 

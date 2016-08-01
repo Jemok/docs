@@ -8,6 +8,7 @@
 
 namespace App\Repositories;
 
+use App\Group;
 use App\User;
 
 
@@ -21,6 +22,11 @@ class SearchRepository
             ->orWhere('email', 'LIKE', "%$query%")
             ->paginate(10);
 
+    }
+
+    public function searchGroup($query){
+
+        return Group::where('group_code', $query)->with('year', 'month', 'course', 'division')->first();
     }
 
 }

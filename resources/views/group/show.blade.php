@@ -5,11 +5,14 @@
         <div class="row">
 
             {{--left panel--}}
-            <div class="col-md-3">
-                <div class="panel panel-default panel-left">
+            <div class="col-md-3 flash-padding">
+                <div class="panel">
                     <div class="panel-body">
-
+                        <a class="col-md-offset-5">
+                            {{ Auth::user()->name }}
+                        </a>
                         {{--search form--}}
+                        <div class="flash-padding">
                         <form class="form-horizontal" method="post" action="#">
                             <div class="input-group changethisone col-md-12">
                                 <input type="text" class="form-control" placeholder="Search a group">
@@ -18,7 +21,7 @@
                                         </span>
                             </div>
                         </form>
-
+                        </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <table class="table">
@@ -26,8 +29,19 @@
                                     <td><strong>Current Group</strong></td>
                                     </thead>
                                     <tbody>
-                                    <td><a href="#">Bit 2013 BSc Information technology</a></td>
+                                    <td>{{ $group_name }} . <span class="font-size">{{ $group_code }} </span></td>
+                                    <tr>
+                                        <td>
+                                            <a href="{{ url('/home') }}" class="col-md-offset-4">Back Home</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="{{ url('/logout') }}" class="col-md-offset-5"><i class="fa fa-btn fa-sign-out"></i>Logout</a>
+                                        </td>
+                                    </tr>
                                     </tbody>
+
                                 </table>
 
                             </div>
@@ -39,23 +53,12 @@
             </div>{{--end left panel--}}
 
             {{--right panel--}}
-            <div class="col-md-9">
-                <div class="panel panel-default panel-right">
-                    <div class="panel-heading"><strong>Files</strong></div>
+            <div class="col-md-9 flash-padding">
+                @include('flash.flash_message')
+                <div class="panel panel-border">
+                    <div class="panel-heading"><strong>Uploald a file to {{ $group_name }} . <span class="font-size">{{ $group_code }} </span></strong></div>
                     <div class="panel-body">
-
-                        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                            <div class="panel panel-default panel-lecturer">
-                                <div class="panel-heading" role="tab" id="headingOne">
-                                    <h4 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#accordion" href="#lecturerCollapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                            Share files
-                                        </a>
-                                    </h4>
-                                </div>
-                                <div id="lecturerCollapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-                                    <div class="panel-body panel-lecturer-body">
-                                        <form class="form-horizontal" method="post" action="#" enctype="multipart/form-data">
+                         <form class="form-horizontal" method="post" action="{{ route('lecturerShare', [$group_id]) }}" enctype="multipart/form-data">
                                             {{ csrf_field() }}
 
                                             <div class="form-group {{ $errors->has('title') ? ' has-error' : '' }}">
@@ -112,10 +115,5 @@
                         </div>
 
                     </div>
-                </div>
-            </div>
 
-        </div>
-
-    </div>
 @endsection

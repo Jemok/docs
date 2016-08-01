@@ -23,6 +23,14 @@ class FilesController extends Controller
         return redirect()->back();
     }
 
+    public function storeForLec(FileRequest $fileRequest, FileRepository $fileRepository, $group_id){
+
+        $fileRepository->store($fileRequest, $group_id, 1);
+
+        Session::flash('flash_message', 'The file was shared to your class group successfully');
+
+        return redirect()->back();
+    }
     /**
      * Share a file to a single person
      * @param Request $request

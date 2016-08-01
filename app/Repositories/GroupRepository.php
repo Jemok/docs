@@ -9,6 +9,7 @@
 namespace App\Repositories;
 
 
+use App\Class_member;
 use App\Group;
 use App\Class_division;
 
@@ -44,7 +45,7 @@ class GroupRepository
      */
     public function userGroups($user_id){
 
-        return GroupMembers::where('user_id', $user_id)->get('group_id');
+        return Class_member::where('user_id', $user_id)->get(['group_id']);
     }
 
     /**

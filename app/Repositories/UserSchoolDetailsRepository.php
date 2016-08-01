@@ -49,7 +49,7 @@ class UserSchoolDetailsRepository
 
         $class_repository = new ClassRepository(new Group());
 
-        $class_check = $class_repository->checkIfExists($request->course);
+        $class_check = $class_repository->checkIfExists($request->course, $request->year, $request->month);
 
         if($class_check == null){
 
@@ -60,7 +60,7 @@ class UserSchoolDetailsRepository
                                     $request->group);
             $class_repository->addAdmin($class);
 
-            $member_answer = $class_repository->addMember($class);
+            $member_answer = $class_repository->addMember($class, 0);
 
             if($member_answer == true){
 
@@ -71,7 +71,7 @@ class UserSchoolDetailsRepository
             }
 
         }else{
-            $member_answer = $class_repository->addMember($class_check);
+            $member_answer = $class_repository->addMember($class_check, 0);
 
             if($member_answer == true){
 

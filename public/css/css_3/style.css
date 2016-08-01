@@ -4,6 +4,12 @@
     border-radius:0px ;
     background-color: #f5f5f5;
 }
+
+.panel-border
+{
+    border-left: solid 1px #0288d1;
+    border-radius:0px ;
+}
 .well
 {
     background-color: #FFFFFF;
@@ -18,7 +24,6 @@
 {
     padding-top:5px;
     background-color: white;
-    height: 562px;
 }
 .panel-body-height
 {
@@ -70,4 +75,25 @@
     background-color: #FFFFFF;
     height: 452px;
     overflow: auto;
+}
+
+.font-size{
+
+    font-size: 11px;
+}
+
+.font-bold{
+
+    font-weight: bold;
+}
+
+.flash-padding{
+
+    padding-top: 20px;
+}
+
+.new-file{
+
+    color: red;
+
 }

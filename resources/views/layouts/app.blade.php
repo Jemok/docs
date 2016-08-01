@@ -26,29 +26,22 @@
     </style>
 </head>
 <body id="app-layout">
-    <nav class="navbar navbar-default navbar-static-top">
+    @if(\Auth::guest())
+    <nav class="navbar navbar-static-top">
         <div class="container">
-            <div class="navbar-header">
+            <div class="navbar-head">
 
-                <!-- Collapsed Hamburger -->
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                    <span class="sr-only">Toggle Navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
+                {{--<!-- Collapsed Hamburger -->--}}
+                {{--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">--}}
+                    {{--<span class="sr-only">Toggle Navigation</span>--}}
+                    {{--<span class="icon-bar"></span>--}}
+                    {{--<span class="icon-bar"></span>--}}
+                    {{--<span class="icon-bar"></span>--}}
+                {{--</button>--}}
 
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    @if(!Auth::guest())
-                    <strong>
-                        @if(isset($class_name))
-                        {{ $class_name }}
-                        @endif
-                    </strong>
-                    @else
                         <strong>Docs</strong>
-                    @endif
                 </a>
             </div>
 
@@ -74,21 +67,21 @@
                             </ul>
                         </li>
                     @else
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                {{ Auth::user()->name }} <span class="caret"></span>
-                            </a>
-
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
-                            </ul>
+                        <li>
+                            {{--<a>--}}
+                                {{--{{ Auth::user()->name }}--}}
+                            {{--</a>--}}
                         </li>
+                        {{--<li>--}}
+                            {{--<a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a>--}}
+                        {{--</li>--}}
+
                     @endif
                 </ul>
             </div>
         </div>
     </nav>
-
+    @endif
     @yield('content')
 
     <!-- JavaScripts -->

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Class_member;
+use App\Group;
 use App\Http\Requests;
 use App\Repositories\CampusRepository;
 use App\Repositories\ClassMembersRepository;
@@ -62,14 +64,26 @@ class HomeController extends Controller
 
         }else if((Auth::user()->isStudent()) && (Auth::user()->hasSchoolDetails(Auth::user()->id) == 1)) {
 
+                $user_groups = $groupRepository->userGroups(\Auth::user()->id);
 
-                //$user_groups = $groupRepository->userGroups(\Auth::user()->id);
+                 $group_files = $sharedFilesRepository->getForUserGroup($user_groups);
 
-                //$group_files = $sharedFilesRepository->getForUserGroup($user_groups);
+                $last_login = Auth::user()->login()->first()->updated_at;
 
-                //$inbox_files = $sharedFilesRepository->getForUserInbox(Auth::user()->id);
+                $new_group_files_count = $sharedFilesRepository->countNewSharedFiles($user_groups, $last_login);
+
+
+                 $inbox_files = $sharedFilesRepository->getForUserInbox(Auth::user()->id);
+
+                $new_inbox_files_count = $sharedFilesRepository->countUserInbox(Auth::user()->id, $last_login);
+
 
                 $user_class = Auth::user()->intake()->with('year', 'month', 'course', 'division')->first();
+
+                $group_id = Class_member::where('user_id', Auth::user()->id)->first()->group_id;
+
+                $class_code = Group::where('id', $group_id)->first()->group_code;
+
 
                 $class_name = $classRepository->makeName($user_class);
 
@@ -79,21 +93,30 @@ class HomeController extends Controller
                 if (Auth::user()->login()->first()->status == 1) {
 
                     $login_status = 1;
+
+                    Auth::user()->login()->update([
+                       'status' => 1
+                    ]);
                 } else {
                     $login_status = 0;
 
+                    Auth::user()->login()->update([
+                        'status' => 0
+                    ]);
+
+
                 }
 
-                return view('dashboards.student', compact('group_files', 'inbox_files', 'class_name', 'login_status', 'members'));
+                return view('dashboards.student', compact('group_files', 'inbox_files', 'class_name', 'class_code', 'login_status', 'last_login', 'members', 'new_group_files_count', 'new_inbox_files_count'));
             }else if(Auth::user()->isLecturer()) {
 
-                //$lecturer_group_ids = $classRepository->getLecturerClasses(Auth::user()->id);
+                $lecturer_group_ids = $classRepository->getLecturerClasses(Auth::user()->id);
 
-                //$lecturer_groups = $groupRepository->getLecturerGroups($lecturer_group_ids);
+                $lecturer_groups = $groupRepository->getLecturerGroups($lecturer_group_ids);
 
-                $class_name = '';
+                $lecturer_files = $sharedFilesRepository->getForLecturerGroups();
 
-                return view('dashboards.lecturer', compact('lecturer_groups', 'class_name'));
+                return view('dashboards.lecturer', compact('lecturer_groups', 'classRepository', 'lecturer_files'));
             }
         }
 }

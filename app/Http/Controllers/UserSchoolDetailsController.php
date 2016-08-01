@@ -22,7 +22,7 @@ class UserSchoolDetailsController extends Controller
 
 
         if($set_admin == null){
-            Session::flash('flash_message', 'Welcome, you were placed in your class group automatically, and you wer placed as the class representative');
+            Session::flash('flash_message', 'Welcome, you were placed in your class group automatically, and you were placed as the class representative');
 
             return redirect('/home');
         }
