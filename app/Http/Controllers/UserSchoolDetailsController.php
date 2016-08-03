@@ -41,7 +41,7 @@ class UserSchoolDetailsController extends Controller
 
         $email = Auth::user()->email;
 
-        $this->fileNotificationList->{$method}('fileNotificationSubscribers', $email);
+        //$this->fileNotificationList->{$method}('fileNotificationSubscribers', $email);
 
         if($set_admin == null){
             Session::flash('flash_message', 'Welcome, you were placed in your class group automatically, and you were placed as the class representative');

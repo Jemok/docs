@@ -38,7 +38,7 @@ class NotificationObserver
 
         $body = View::make('email.file_shared', compact('model'))->render();
 
-        $fileShared->notify($model->file()->first()->file_name, $body);
+        //$fileShared->notify($model->file()->first()->file_name, $body);
 
     }
 }
