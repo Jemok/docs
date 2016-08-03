@@ -32,6 +32,8 @@ class CreateUserSchoolDetailTableMigration extends Migration
             $table->integer('user_id')->index()->unsigned();
             $table->timestamps();
 
+            $table->integer('notify')->unsigned()->default(1);
+
             /**
              * The foreign key definition for the users table
              */

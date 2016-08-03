@@ -66,7 +66,8 @@ class UserSchoolDetailsRepository
 
 
                 Auth::user()->school_details()->first()->update([
-                    'status' => 1
+                    'status' => 1,
+                    'notify' => $request->notify
                 ]);
             }
 
@@ -77,7 +78,8 @@ class UserSchoolDetailsRepository
 
 
                 Auth::user()->school_details()->update([
-                    'status' => 1
+                    'status' => 1,
+                    'notify' => $request->notify
                 ]);
             }
         }

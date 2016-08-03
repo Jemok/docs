@@ -16,7 +16,7 @@
                             Students to share files to groups they belong.
                         </p>
                         <p><span class="glyphicon glyphicon-check"></span>
-                            Student share files to other student.
+                            Students to share files to other student in their group.
                         </p>
                     </div>
                 </div>

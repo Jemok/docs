@@ -18,7 +18,8 @@ class UserSchoolDetails extends Model
      */
     protected $fillable = [
 
-        'status'
+        'status',
+        'notify'
     ];
 
     /**

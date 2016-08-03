@@ -155,6 +155,10 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        App\FileNotification\FileNotificationServiceProvider::class,
+        App\FileNotification\Notifications\NotificationsServiceProvider::class
+
+
 
     ],
 

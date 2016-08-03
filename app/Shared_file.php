@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Observers\NotificationObserver;
 use Illuminate\Database\Eloquent\Model;
 
 class Shared_file extends Model
@@ -51,4 +52,14 @@ class Shared_file extends Model
         return $this->belongsTo(User::class, 'receiver');
     }
 
+
+    /**
+     *
+     */
+    public static function boot(){
+
+        parent::boot();
+
+        Shared_file::observe(new NotificationObserver());
+    }
 }
