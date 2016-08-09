@@ -15,7 +15,31 @@ class YearsTableSeeder extends Seeder
         $user = User::findOrFail(1);
 
         $user->years()->create([
+            'year' => '2016'
+        ]);
+
+        $user->years()->create([
+            'year' => '2015'
+        ]);
+
+        $user->years()->create([
+            'year' => '2014'
+        ]);
+
+        $user->years()->create([
             'year' => '2013'
+        ]);
+
+        $user->years()->create([
+            'year' => '2012'
+        ]);
+
+        $user->years()->create([
+            'year' => '2011'
+        ]);
+
+        $user->years()->create([
+            'year' => '2010'
         ]);
     }
 }

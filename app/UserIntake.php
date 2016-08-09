@@ -22,7 +22,7 @@ class UserIntake extends Model
         'month_of_intake_id',
         'course_id',
         'year_of_intake_id',
-        'class_division_id'
+        //'class_division_id'
     ];
 
     /**

@@ -22,7 +22,7 @@ class Group extends Model
         'course_id',
         'year_of_intake_id',
         'month_of_intake_id',
-        'class_division_id',
+        //'class_division_id',
         'group_code'
     ];
 

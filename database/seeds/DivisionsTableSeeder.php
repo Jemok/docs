@@ -17,5 +17,30 @@ class DivisionsTableSeeder extends Seeder
         $user->divisions()->create([
             'division' => 'A'
         ]);
+
+        $user->divisions()->create([
+            'division' => 'B'
+        ]);
+
+        $user->divisions()->create([
+            'division' => 'C'
+        ]);
+
+        $user->divisions()->create([
+            'division' => 'D'
+        ]);
+
+        $user->divisions()->create([
+            'division' => 'E'
+        ]);
+
+        $user->divisions()->create([
+            'division' => 'F'
+        ]);
+
+        $user->divisions()->create([
+            'division' => 'G'
+        ]);
+
     }
 }

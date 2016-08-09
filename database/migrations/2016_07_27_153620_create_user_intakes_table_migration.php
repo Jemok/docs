@@ -20,7 +20,7 @@ class CreateUserIntakesTableMigration extends Migration
             $table->integer('month_of_intake_id')->index()->unsigned();
             $table->integer('course_id')->index()->unsigned();
             $table->integer('year_of_intake_id')->index()->unsigned();
-            $table->integer('class_division_id')->index()->unsigned();
+            $table->integer('class_division_id')->index()->unsigned()->default(1);
             $table->foreign('campus_id')
                 ->references('id')
                 ->on('campuses');
@@ -37,13 +37,13 @@ class CreateUserIntakesTableMigration extends Migration
                     ->references('id')
                     ->on('users');
 
-            DB::statement('SET FOREIGN_KEY_CHECKS = 0');
-
-            $table->foreign('class_division_id')
-                  ->references('id')
-                  ->on('class_divisions');
-
-            DB::statement('SET FOREIGN_KEY_CHECKS = 1');
+//            DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+//
+//            $table->foreign('class_division_id')
+//                  ->references('id')
+//                  ->on('class_divisions');
+//
+//            DB::statement('SET FOREIGN_KEY_CHECKS = 1');
 
 
             $table->timestamps();

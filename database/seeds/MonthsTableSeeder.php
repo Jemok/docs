@@ -19,5 +19,19 @@ class MonthsTableSeeder extends Seeder
             'month' => 'September'
 
         ]);
+
+
+        $user->months()->create([
+
+            'month' => 'May'
+
+        ]);
+
+
+        $user->months()->create([
+
+            'month' => 'January'
+
+        ]);
     }
 }

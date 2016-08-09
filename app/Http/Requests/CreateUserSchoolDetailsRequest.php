@@ -28,7 +28,6 @@ class CreateUserSchoolDetailsRequest extends Request
             'course' => 'required|numeric',
             'year'   => 'required|numeric',
             'month'  => 'required|numeric',
-            'group'  => 'required|numeric'
         ];
     }
 }
