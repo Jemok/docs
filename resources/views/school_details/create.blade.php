@@ -152,22 +152,22 @@
                                 </div>
                             </div>
 
-                            <div class="form-group {{ $errors->has('notify') ? ' has-error' : '' }}">
-                                <label for="notify" class="col-md-3 control-label">Get email notifications?</label>
+                            {{--<div class="form-group {{ $errors->has('notify') ? ' has-error' : '' }}">--}}
+                                {{--<label for="notify" class="col-md-3 control-label">Get email notifications?</label>--}}
 
-                                <div class="col-md-9">
+                                {{--<div class="col-md-9">--}}
 
 
-                                    <input type="checkbox" value="1" name="notify" checked>
+                                    {{--<input type="checkbox" value="1" name="notify" checked>--}}
 
-                                    @if($errors->has('notify'))
-                                        <span class="help-block">
-                                        <strong>{{ $errors->first('notify') }}</strong>
-                                    </span>
-                                    @endif
+                                    {{--@if($errors->has('notify'))--}}
+                                        {{--<span class="help-block">--}}
+                                        {{--<strong>{{ $errors->first('notify') }}</strong>--}}
+                                    {{--</span>--}}
+                                    {{--@endif--}}
 
-                                </div>
-                            </div>
+                                {{--</div>--}}
+                            {{--</div>--}}
 
                             <div class="form-group">
                                 <div class="col-md-4 col-md-offset-4">

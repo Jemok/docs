@@ -7,7 +7,7 @@
 
                 <div class="col-md-4 col-md-offset-4 col-file-sharing">
 
-                    <h4>Docs is a file sharing application that allows </h4>
+                    <h4>Students Lecturer Files Sharing System is a file sharing application that allows: </h4>
                     <div class="col-md-10">
                         <p><span class="glyphicon glyphicon-check"></span>
                             Lecturers to share files to groups they teach
